@@ -1130,6 +1130,8 @@ void InternalStartQuest(UINT8 ubQuest, const SGPSector& sector, BOOLEAN fUpdateH
 	}
 }
 
+Observable<UINT8, INT16, INT16, BOOLEAN> OnQuestEnded;
+
 void EndQuest(UINT8 ubQuest, const SGPSector& sector)
 {
 	InternalEndQuest(ubQuest, sector, TRUE);
@@ -1158,6 +1160,8 @@ void InternalEndQuest(UINT8 ubQuest, const SGPSector& sector, BOOLEAN fUpdateHis
 		gMercProfiles[ MADAME ].bNPCData = 0;
 		gMercProfiles[ MADAME ].bNPCData2 = 0;
 	}
+
+	OnQuestEnded(ubQuest, sector.x, sector.y, fUpdateHistory);
 }
 
 
@@ -1184,13 +1188,17 @@ void InitQuestEngine()
 	gfBoxersResting = FALSE;
 }
 
-
+Observable<UINT32, BOOLEAN_S*> OnCheckQuests;
 
 void CheckForQuests( UINT32 uiDay )
 {
 	// This function gets called at 8:00 AM time of the day
 
 	SLOGD("Checking For Quests, Day %d", uiDay );
+
+	BOOLEAN_S handled = false;
+	OnCheckQuests(uiDay, &handled);
+	if (handled) return;
 
 	// -------------------------------------------------------------------------------
 	// QUEST 0 : DELIVER LETTER

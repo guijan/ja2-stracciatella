@@ -256,6 +256,7 @@ static void RegisterUserTypes()
 		"sInitialGridNo", &SOLDIERTYPE::sInitialGridNo,
 
 		"usAnimState", &SOLDIERTYPE::usAnimState,
+		"uiAnimSubFlags", &SOLDIERTYPE::uiAnimSubFlags,
 
 		"ubStrategicInsertionCode", &SOLDIERTYPE::ubStrategicInsertionCode,
 		"usStrategicInsertionData", &SOLDIERTYPE::usStrategicInsertionData,
@@ -292,7 +293,9 @@ static void RegisterUserTypes()
 		"ubLastDateSpokenTo", &MERCPROFILESTRUCT::ubLastDateSpokenTo,
 
 		"bSkillTrait", &MERCPROFILESTRUCT::bSkillTrait,
-		"bSkillTrait2", &MERCPROFILESTRUCT::bSkillTrait2
+		"bSkillTrait2", &MERCPROFILESTRUCT::bSkillTrait2,
+
+		"bLife", &MERCPROFILESTRUCT::bLife
 		);
 
 	lua.new_usertype<GROUP>("GROUP",
@@ -347,6 +350,8 @@ static void RegisterGlobals()
 	lua.set_function("GetStrategicMapElement", GetStrategicMapElement);
 	lua.set_function("SetThisSectorAsPlayerControlled", SetThisSectorAsPlayerControlled);
 
+	lua.set_function("CreateNewEnemyGroupDepartingSector", CreateNewEnemyGroupDepartingSector);
+
 	lua.set_function("CreateItem", CreateItem);
 	lua.set_function("CreateMoney", CreateMoney);
 	lua.set_function("PlaceItem", PlaceItem);
@@ -359,8 +364,6 @@ static void RegisterGlobals()
 	lua.set_function("ListSoldiersFromTeam", ListSoldiersFromTeam);
 	lua.set_function("FindSoldierByProfileID", FindSoldierByProfileID);
 
-	lua.set_function("ChangeSoldierState", ChangeSoldierState);
-	lua.set_function("RemoveObjectFromSoldierProfile", RemoveObjectFromSoldierProfile);
 
 	lua.set_function("TriggerNPCRecord", TriggerNPCRecord);
 	lua.set_function("StrategicNPCDialogue", StrategicNPCDialogue);
@@ -372,10 +375,16 @@ static void RegisterGlobals()
 	lua.set_function("DoMercBattleSound", DoMercBattleSound_);
 
 	lua.set_function("IgniteExplosion", IgniteExplosion);
+	lua.set_function("SetOffBombsByFrequency", SetOffBombsByFrequency);
+	lua.set_function("AddExitGridToWorld", AddExitGridToWorld_);
+	lua.set_function("RemoveExitGridFromWorld", RemoveExitGridFromWorld);
+	lua.set_function("RemoveStructFromMap", RemoveStructFromMap);
+	lua.set_function("AddStructToMap", AddStructToMap);
+
 	lua.set_function("ChangeSoldierStance", ChangeSoldierStance);
 	lua.set_function("ChangeSoldierState", ChangeSoldierState);
-
-	lua.set_function("CreateNewEnemyGroupDepartingSector", CreateNewEnemyGroupDepartingSector);
+	lua.set_function("RemoveObjectFromSoldierProfile", RemoveObjectFromSoldierProfile);
+	lua.set_function("StopSoldier", StopSoldier);
 
 	lua.set_function("GetWorldTotalMin", GetWorldTotalMin);
 	lua.set_function("GetWorldTotalSeconds", GetWorldTotalSeconds);

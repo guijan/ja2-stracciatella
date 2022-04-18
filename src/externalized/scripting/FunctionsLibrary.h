@@ -394,3 +394,8 @@ void RemoveRandomItemFromDealerInventory(INT8 bArmsDealerID, UINT16 usItemIndex,
 std::vector<DEALER_ITEM_HEADER*> GetDealerInventory(UINT8 ubDealerID);
 BOOLEAN StartShopKeeperTalking(UINT16 usQuoteNum);
 void EnterShopKeeperInterfaceScreen(UINT8 ubArmsDealer);
+void SetOffBombsByFrequency(SOLDIERTYPE* s, INT8 bFrequency);
+void AddExitGridToWorld_(INT32 mapIndex, UINT16 gridNo, UINT8 x, UINT8 y, UINT8 z);
+void RemoveExitGridFromWorld(INT32 iMapIndex);
+void RemoveStructFromMap(UINT16 gridNo, UINT32 tileType, UINT16 tileSubIndex);
+void AddStructToMap(UINT16 gridNo, UINT32 tileType, UINT16 tileSubIndex);

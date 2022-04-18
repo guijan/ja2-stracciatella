@@ -2,8 +2,8 @@ RegisterListener('OnEnterSector', 'scale_enemies')
 
 function scale_enemies(x, y, z)
     -- Scales the difficulty of enemies
-    local our_team = rank_soldiers_by_exp_level(ListSoldiersFromTeam(Teams.OUR_TEAM))
-    local enemy_team = rank_soldiers_by_exp_level(ListSoldiersFromTeam(Teams.ENEMY_TEAM))
+    local our_team = rank_soldiers_by_exp_level(ListSoldiersFromTeam(Team.OUR_TEAM))
+    local enemy_team = rank_soldiers_by_exp_level(ListSoldiersFromTeam(Team.ENEMY_TEAM))
 
     -- no enemies
     if #enemy_team == 0 then
@@ -14,20 +14,20 @@ function scale_enemies(x, y, z)
     if #enemy_team < 2 then enemy_team[2] = enemy_team[1] end
     if #our_team < 2 then our_team[2] = our_team[1] end
 
-    if gGameOptions.ubDifficultyLevel == DifficultyLevels.DIF_LEVEL_EASY then
+    if gGameOptions.ubDifficultyLevel == DifficultyLevel.DIF_LEVEL_EASY then
         local adjustment = our_team[2].bExpLevel - enemy_team[2].bExpLevel
         -- if the players exp level is less then enemies
         if adjustment < 0 then
             -- degrade all the enemies exp levels by difference (at most -2)
             scale_all_enemies(math.max(adjustment, -2))
         end
-    elseif gGameOptions.ubDifficultyLevel == DifficultyLevels.DIF_LEVEL_MEDIUM then
+    elseif gGameOptions.ubDifficultyLevel == DifficultyLevel.DIF_LEVEL_MEDIUM then
         local adjustment = our_team[2].bExpLevel - enemy_team[1].bExpLevel
         if adjustment > 0 then
             -- Upgrade all the enemies exp levels by difference
             scale_all_enemies(adjustment);
         end
-    elseif gGameOptions.ubDifficultyLevel == DifficultyLevels.DIF_LEVEL_HARD then
+    elseif gGameOptions.ubDifficultyLevel == DifficultyLevel.DIF_LEVEL_HARD then
         local adjustment = our_team[1].bExpLevel - enemy_team[1].bExpLevel
         if adjustment > 0 then
             scale_all_enemies(adjustment)  -- TODO: or upgrade all the enemies exp levels by 1
@@ -42,7 +42,7 @@ end
 
 function scale_all_enemies(adjustment)
     log.info("scaling enemies by " .. adjustment)
-    local enemies = ListSoldiersFromTeam(Teams.ENEMY_TEAM)
+    local enemies = ListSoldiersFromTeam(Team.ENEMY_TEAM)
     for _, s in ipairs(enemies) do
         local new_level = s.bExpLevel + adjustment
         new_level = math.max(1, math.min(10, new_level))  -- ensure valid value (1 - 10)

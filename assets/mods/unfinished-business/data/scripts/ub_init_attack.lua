@@ -14,7 +14,7 @@ function handle_strategic_event(event, processed)
 end
 
 function mercs_still_at_sector(sectorX, sectorY, sectorZ)
-    local our_team = ListSoldiersFromTeam(Teams.OUR_TEAM)
+    local our_team = ListSoldiersFromTeam(Team.OUR_TEAM)
     for _, s in ipairs(our_team) do
         if s.bActive and
             s.sSectorX == sectorX and

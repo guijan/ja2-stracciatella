@@ -38,7 +38,7 @@ end
 function hiring_contracts_updates(event, processed)
     if event.ubEventKind ==  EventTypes.EVENT_HOURLY_UPDATE then
         -- reset iMercMercContractLength to 0 for M.E.R.C.
-        local our_team = ListSoldiersFromTeam(Teams.OUR_TEAM)
+        local our_team = ListSoldiersFromTeam(Team.OUR_TEAM)
         for _, s in ipairs(our_team) do
             update_soldier_contract(s)
         end

@@ -1,5 +1,5 @@
 RegisterListener("BeforeStructureDamaged", "handle_mine_entrance_damage")
-
+RegisterListener("BeforePrepareSector", "handle_load_mine_sector")
 MAP_ROW_I = 9
 
 
@@ -17,12 +17,33 @@ function replace_mine_entrance()
     if extra_game_state.mine_entrance_collapsed then
        return
     end
-    extra_game_state.mine_entrance_collapsed = true
+
     log.info("mine entrance collapsed")
+    extra_game_state.mine_entrance_collapsed = true
+    AddStructToMap(12745, TileType.FIRSTOSTRUCT, 1);
+
     RemoveExitGridFromWorld(12422)
     RemoveExitGridFromWorld(12423)
+end
 
-    --TODO: update collapsed entrance graphics
+
+function handle_load_mine_sector()
+    if GetCurrentSector() == "I13-1" then
+        if extra_game_state.mine_entrance_collapsed then
+            log.info("mine exit has been destroyed")
+            -- First half of entrance
+            RemoveStructFromMap(13057, TileType.FIRSTDECORATIONS, 1)
+            AddStructToMap(13057, TileType.FIRSTDECORATIONS, 5)
+            RemoveExitGridFromWorld(13057)
+            -- 2nd half of entrance
+            RemoveStructFromMap(12897, TileType.FIRSTDECORATIONS, 2)
+            AddStructToMap(12897, TileType.FIRSTDECORATIONS, 6)
+            RemoveExitGridFromWorld(12897)
+        end
+    end
+end
+
+
     --[[
             UINT16                                                                  usTileIndex;
             UINT16 usGridNo=12745;
@@ -106,4 +127,3 @@ function replace_mine_entrance()
 
 
     --]]
-end

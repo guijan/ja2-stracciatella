@@ -71,7 +71,7 @@ function after_buying_transmitter(event, processed)
     DoBasicMessageBox("Attaching the transmitter to your laptop computer.")
 
     -- find the transmitter from soldiers' inventory
-    local our_team = ListSoldiersFromTeam(Teams.OUR_TEAM)
+    local our_team = ListSoldiersFromTeam(Team.OUR_TEAM)
     for _, s in ipairs(our_team) do
         -- try to consume(remove) the transmitter item
         if RemoveObjectFromSoldierProfile(s.ubProfile, UB_Items.LAPTOP_TRANSMITTER) == TRUE then

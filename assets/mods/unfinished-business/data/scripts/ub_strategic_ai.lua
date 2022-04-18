@@ -25,11 +25,11 @@ end
 
 function init_bloodcats()
     local num_bloodcats = 0
-    if gGameOptions.ubDifficultyLevel == DifficultyLevels.DIF_LEVEL_EASY then
+    if gGameOptions.ubDifficultyLevel == DifficultyLevel.DIF_LEVEL_EASY then
         num_bloodcats = 3
-    elseif gGameOptions.ubDifficultyLevel == DifficultyLevels.DIF_LEVEL_MEDIUM then
+    elseif gGameOptions.ubDifficultyLevel == DifficultyLevel.DIF_LEVEL_MEDIUM then
         num_bloodcats = 4
-    elseif gGameOptions.ubDifficultyLevel == DifficultyLevels.DIF_LEVEL_HARD then
+    elseif gGameOptions.ubDifficultyLevel == DifficultyLevel.DIF_LEVEL_HARD then
         num_bloodcats = 5
     end
 

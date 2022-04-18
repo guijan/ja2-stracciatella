@@ -75,7 +75,7 @@ function handle_strategic_screen()
     end
 
     if gTacticalStatus.fDidGameJustStart == TRUE then
-        local team = ListSoldiersFromTeam(Teams.OUR_TEAM)
+        local team = ListSoldiersFromTeam(Team.OUR_TEAM)
         if #team == 0 then
             jerry_say_quote(UB_JerryQuotes.MILO_QUOTE__PLAYER_HAS_NO_MERCS)
         elseif #team < 6 then
@@ -99,7 +99,7 @@ function prepare_heli_crash()
     --end
     --
     -- -- first, loop through all the mercs and injure them
-    --local our_team = ListSoldiersFromTeam(Teams.OUR_TEAM)
+    --local our_team = ListSoldiersFromTeam(Team.OUR_TEAM)
     --for _, s in ipairs(our_team) do
     --    --if s.bActive then
     --    --    s.bLife = s.bLife - (3 + math.random(0, 5))
@@ -139,7 +139,7 @@ function on_enter_tactical_screen()
     jerry_s.bVisible = TRUE
 
     -- first, loop through all the mercs and injure them
-    local our_team = ListSoldiersFromTeam(Teams.OUR_TEAM)
+    local our_team = ListSoldiersFromTeam(Team.OUR_TEAM)
     for _, s in ipairs(our_team) do
         if s.bActive == TRUE then
             s.bLife = s.bLife - (3 + math.random(0, 5))
@@ -163,7 +163,7 @@ function handle_event_callback(event, processed)
     if event.uiParam < 100 then
         -- stage 1: mercs getting up
         local next = event.uiParam + 1
-        local mercs = ListSoldiersFromTeam(Teams.OUR_TEAM)
+        local mercs = ListSoldiersFromTeam(Team.OUR_TEAM)
         local next_merc = mercs[next]
         ChangeSoldierStance(next_merc, ANIM_STAND)
         --if the merc is one of the mercs who has Quote 80, say that
@@ -187,7 +187,7 @@ function handle_event_callback(event, processed)
         AddStrategicEvent(UB_EventTypes.EVENT_INIT_HELI_CRASH_SEQUENCE, GetWorldTotalSeconds()+1, 101)
 
     elseif event.uiParam == 101 then
-        local mercs = ListSoldiersFromTeam(Teams.OUR_TEAM)
+        local mercs = ListSoldiersFromTeam(Team.OUR_TEAM)
         local random_merc = mercs[math.random(1, #mercs)]
         local text = GetMercProfile(random_merc.ubProfile).zNickname .. " hears the sound of crumpling metal coming from underneath Jerry's body.  It sounds disturbingly like your laptop antenna being crushed."
         ExecuteTacticalTextBox(110, 20, text) --TODO: textbox does not close properly until the next TacticalCharDialog
@@ -208,7 +208,7 @@ end
 function handle_jerry_npc_action(npc_id, action_code, quote_num, handled)
     if action_code == UB_NPCActions.NPC_ACTION_TRIGGER_JERRY_CONVERSATION_WITH_PGC_1 then
         -- action 301
-        local our_team = ListSoldiersFromTeam(Teams.OUR_TEAM)
+        local our_team = ListSoldiersFromTeam(Team.OUR_TEAM)
         for _, s in ipairs(our_team) do
             if soldier_has_ub_quotes(s) then
                 -- complain about bad flight
@@ -240,7 +240,7 @@ function handle_timecompress_disallow(handled)
     end
 
     -- before we landed in Tracona
-    local our_team = ListSoldiersFromTeam(Teams.OUR_TEAM)
+    local our_team = ListSoldiersFromTeam(Team.OUR_TEAM)
     --if #our_team == 0 then
     --    jerry_say_quote(UB_JerryQuotes.MILO_QUOTE__PLAYER_HAS_NO_MERCS)
     --    handled.val = TRUE

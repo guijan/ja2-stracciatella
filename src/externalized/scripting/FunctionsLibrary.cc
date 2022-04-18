@@ -17,6 +17,7 @@
 #include "Exit_Grids.h"
 #include "WorldMan.h"
 #include "SaveLoadMap.h"
+#include "RenderWorld.h"
 #include <stdexcept>
 #include <string>
 #include <string_theory/format>
@@ -268,6 +269,8 @@ void RemoveStructFromMap(UINT16 gridNo, UINT32 tileType, UINT16 tileSubIndex)
 	ApplyMapChangesToMapTempFile app;
 	UINT16 tileIndex = GetTileIndexFromTypeSubIndex(tileType, tileSubIndex);
 	RemoveStruct(gridNo, tileIndex);
+//	gTacticalStatus.uiFlags |= NOHIDE_REDUNDENCY;
+//	SetRenderFlags(RENDER_FLAG_FULL);
 }
 
 void AddStructToMap(UINT16 gridNo, UINT32 tileType, UINT16 tileSubIndex)
@@ -275,4 +278,7 @@ void AddStructToMap(UINT16 gridNo, UINT32 tileType, UINT16 tileSubIndex)
 	ApplyMapChangesToMapTempFile app;
 	UINT16 tileIndex = GetTileIndexFromTypeSubIndex(tileType, tileSubIndex);
 	AddStructToHead(gridNo, tileIndex);
+
+//	gTacticalStatus.uiFlags |= NOHIDE_REDUNDENCY;
+//	SetRenderFlags(RENDER_FLAG_FULL);
 }

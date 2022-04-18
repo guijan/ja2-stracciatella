@@ -22,7 +22,7 @@ function handle_biggens_action_item(grid_no, obj, processed)
             log.info("trigger ACTION_ITEM_BIGGENS_BOMBS")
             extra_game_state.biggens_set_off_bombs = true
             TriggerNPCRecord(UB_MercProfiles.BIGGENS, 17)
-
+            
             --TODO: sometimes Biggens just do not run, and the game is locked up infinitely. Don't know why
         end
         processed.val = TRUE
@@ -59,7 +59,7 @@ end
 
 function is_soldier_on_our_team(profile_id)
     local s = FindSoldierByProfileID(profile_id)
-    if s and s.bTeam == Teams.OUR_TEAM then
+    if s and s.bTeam == Team.OUR_TEAM then
         return true
     else
         return false
@@ -67,7 +67,7 @@ function is_soldier_on_our_team(profile_id)
 end
 
 function stop_all_soldiers()
-    local our_team = ListSoldiersFromTeam(Teams.OUR_TEAM)
+    local our_team = ListSoldiersFromTeam(Team.OUR_TEAM)
     for _, s in ipairs(our_team) do
         StopSoldier(s)
     end

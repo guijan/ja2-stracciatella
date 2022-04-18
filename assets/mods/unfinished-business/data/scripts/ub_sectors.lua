@@ -5,7 +5,7 @@ function setup_ub_sectors(x, y, z)
 
     local sectorID = GetCurrentSector()
     local sectorInfo = GetSectorInfo(sectorID)
-    if (sectorInfo.uiFlags & SectorFlags.SF_HAS_ENTERED_TACTICAL) ~= 0 then
+    if (sectorInfo.uiFlags & SectorFlag.SF_HAS_ENTERED_TACTICAL) ~= 0 then
         -- not the first time here
         return
     end

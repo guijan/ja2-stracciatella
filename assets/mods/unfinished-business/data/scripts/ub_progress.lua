@@ -34,7 +34,7 @@ function calc_current_progress(player_progress)
             if is_underground(sector) then
                 -- approximate by SF_ALREADY_VISITED and the absence of enemies
                 local info = GetUndergroundSectorInfo(sector)
-                if (info.uiFlags & SectorFlags.SF_ALREADY_VISITED ~= 0)
+                if (info.uiFlags & SectorFlag.SF_ALREADY_VISITED ~= 0)
                     and info.ubNumElites == 0
                     and info.ubNumTroops == 0
                     and info.ubNumAdmins == 0

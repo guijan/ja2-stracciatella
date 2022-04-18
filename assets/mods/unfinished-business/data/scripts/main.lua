@@ -1,5 +1,5 @@
+require("enums_manual.lua")
 require("enums.lua")
-require('enums_gen.lua')
 require("ub_enums.lua")
 require("lib_serpent.lua")
 

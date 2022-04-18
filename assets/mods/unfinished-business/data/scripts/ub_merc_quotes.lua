@@ -28,7 +28,7 @@ DELAY_FOR_PLAYER_DESC_OF_SECTOR = 2
 
 -- list all mercs, in current sector, that has the new UB quotes, in randomized order
 function get_mercs_with_ub_quotes()
-    local our_team = ListSoldiersFromTeam(Teams.OUR_TEAM)
+    local our_team = ListSoldiersFromTeam(Team.OUR_TEAM)
     local mercs = {}
     local x,y,z = GetCurrentSectorLoc()
     for _, s in ipairs(our_team) do

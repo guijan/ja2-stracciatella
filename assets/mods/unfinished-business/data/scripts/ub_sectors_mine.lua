@@ -1,11 +1,8 @@
 RegisterListener("BeforeStructureDamaged", "handle_mine_entrance_damage")
 RegisterListener("BeforePrepareSector", "handle_load_mine_sector")
+
 MAP_ROW_I = 9
 
-
-function init_mine_entrance_sector()
-    extra_game_state.mine_entrance_collapsed = false
-end
 
 function handle_mine_entrance_damage(x, y, z, grid_no, pCurrent, dist, skipDamage)
     if y == MAP_ROW_I and x == 13 and z == 0 and grid_no == 12421 then

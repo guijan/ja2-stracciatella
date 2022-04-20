@@ -1,6 +1,10 @@
-# Known issues
+\
+# Known issues 
 
-## Missing parts
+This list contains quite a lot of spoilers. Read at your own risk.
+
+
+## Missing parts 
 
 - Laptop should be broken after the first (crash) landing (PATCH097)
 - Prompt to restart game if it is not possible to progress (with no mercs and broken laptop)
@@ -9,7 +13,7 @@
 - Raul should raise the price of the Hand Cannon if you pull back the offer
 - Starting squad of more than 6 should not be allowed
 - Should be able to fire mercs before they arrive (PATCH081)
-- Enemies should never offer surrender (PATCH103)
+  - Enemies should never offer surrender (PATCH103)
 - Strategic AI should launch attacks on player owned sectors (PATCH127)
 - All Raul's dropped items should be rigged
 - Dealers should not replenish cash (PATCH133)
@@ -25,6 +29,10 @@
 - Tactical traversal should not be allowed in Biggen's sector (PATCH142)
 - Tex and John K. should disappear if player leaves the sector without noticing them
 - Emails should be sent according to game progress and laptop fix
+
+## Major bugs
+
+- Game might freeze when Biggens sets off the bombs
 
 ## Minor bugs
 

@@ -1329,13 +1329,13 @@ static void MakeButton(UINT idx, INT16 y, GUI_CALLBACK click, INT8 off_x, const 
 }
 
 
-static void BtnOnCallback(                GUI_BUTTON* btn, INT32 reason);
-static void EmailRegionButtonCallback(    GUI_BUTTON* btn, INT32 reason);
-static void FilesRegionButtonCallback(    GUI_BUTTON* btn, INT32 reason);
-static void FinancialRegionButtonCallback(GUI_BUTTON* btn, INT32 reason);
-static void HistoryRegionButtonCallback(  GUI_BUTTON* btn, INT32 reason);
-static void PersonnelRegionButtonCallback(GUI_BUTTON* btn, INT32 reason);
-static void WWWRegionButtonCallback(      GUI_BUTTON* btn, INT32 reason);
+static void BtnOnCallback(                GUI_BUTTON* btn, UINT32 reason);
+static void EmailRegionButtonCallback(    GUI_BUTTON* btn, UINT32 reason);
+static void FilesRegionButtonCallback(    GUI_BUTTON* btn, UINT32 reason);
+static void FinancialRegionButtonCallback(GUI_BUTTON* btn, UINT32 reason);
+static void HistoryRegionButtonCallback(  GUI_BUTTON* btn, UINT32 reason);
+static void PersonnelRegionButtonCallback(GUI_BUTTON* btn, UINT32 reason);
+static void WWWRegionButtonCallback(      GUI_BUTTON* btn, UINT32 reason);
 
 
 static void CreateLaptopButtons(void)
@@ -1359,7 +1359,7 @@ static void DeleteLapTopButtons(void)
 static BOOLEAN HandleExit(void);
 
 
-static void BtnOnCallback(GUI_BUTTON *btn, INT32 reason)
+static void BtnOnCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -1510,7 +1510,7 @@ static void DeleteLapTopMouseRegions(void)
 static void UpdateListToReflectNewProgramOpened(INT32 iOpenedProgram);
 
 
-static void FinancialRegionButtonCallback(GUI_BUTTON* btn, INT32 reason)
+static void FinancialRegionButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -1526,7 +1526,7 @@ static void FinancialRegionButtonCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void PersonnelRegionButtonCallback(GUI_BUTTON *btn, INT32 reason)
+static void PersonnelRegionButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -1543,7 +1543,7 @@ static void PersonnelRegionButtonCallback(GUI_BUTTON *btn, INT32 reason)
 }
 
 
-static void EmailRegionButtonCallback(GUI_BUTTON *btn, INT32 reason)
+static void EmailRegionButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -1555,7 +1555,7 @@ static void EmailRegionButtonCallback(GUI_BUTTON *btn, INT32 reason)
 }
 
 
-static void WWWRegionButtonCallback(GUI_BUTTON *btn, INT32 reason)
+static void WWWRegionButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -1596,7 +1596,7 @@ static void WWWRegionButtonCallback(GUI_BUTTON *btn, INT32 reason)
 }
 
 
-static void HistoryRegionButtonCallback(GUI_BUTTON *btn, INT32 reason)
+static void HistoryRegionButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -1612,7 +1612,7 @@ static void HistoryRegionButtonCallback(GUI_BUTTON *btn, INT32 reason)
 }
 
 
-static void FilesRegionButtonCallback(GUI_BUTTON *btn, INT32 reason)
+static void FilesRegionButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -1711,8 +1711,8 @@ static void DeleteBookmark(void)
 }
 
 
-static void BookmarkCallBack(MOUSE_REGION* pRegion, INT32 iReason);
-static void BookmarkMvtCallBack(MOUSE_REGION* pRegion, INT32 iReason);
+static void BookmarkCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
+static void BookmarkMvtCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
 
 
 static void CreateBookMarkMouseRegions(void)
@@ -1763,7 +1763,7 @@ static void CreateDestoryBookMarkRegions(void)
 }
 
 
-static void BookmarkCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void BookmarkCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	// we are in process of loading
 	if (fLoadPendingFlag) return;
@@ -1866,7 +1866,7 @@ void GoToWebPage(INT32 iPageId)
 }
 
 
-static void BookmarkMvtCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void BookmarkMvtCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if (iReason == MSYS_CALLBACK_REASON_MOVE)
 	{
@@ -2165,7 +2165,7 @@ static void HandleLeftButtonUpEvent(void)
 	}
 }
 
-void LapTopScreenCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+void LapTopScreenCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -2550,7 +2550,7 @@ static void CreateDestroyMinimizeButtonForCurrentMode(void)
 }
 
 
-static void LaptopMinimizeProgramButtonCallback(GUI_BUTTON* btn, INT32 reason);
+static void LaptopMinimizeProgramButtonCallback(GUI_BUTTON* btn, UINT32 reason);
 
 
 static void CreateMinimizeButtonForCurrentMode(void)
@@ -2571,7 +2571,7 @@ static void DestroyMinimizeButtonForCurrentMode(void)
 static void SetCurrentToLastProgramOpened(void);
 
 
-static void LaptopMinimizeProgramButtonCallback(GUI_BUTTON* btn, INT32 reason)
+static void LaptopMinimizeProgramButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -2896,7 +2896,7 @@ void RenderWWWProgramTitleBar(void)
 }
 
 
-static void LaptopProgramIconMinimizeCallback(MOUSE_REGION* pRegion, INT32 iReason);
+static void LaptopProgramIconMinimizeCallback(MOUSE_REGION* pRegion, UINT32 iReason);
 
 
 static void CreateMinimizeRegionsForLaptopProgramIcons(void)
@@ -2918,7 +2918,7 @@ static void DestroyMinimizeRegionsForLaptopProgramIcons(void)
 }
 
 
-static void LaptopProgramIconMinimizeCallback(MOUSE_REGION* pRegion, INT32 iReason)
+static void LaptopProgramIconMinimizeCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	// callback handler for the minize region that is attatched to the laptop program icon
 	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
@@ -2995,8 +2995,8 @@ void DisplayProgramBoundingBox(BOOLEAN fMarkButtons)
 }
 
 
-static void NewEmailIconCallback(MOUSE_REGION* pRegion, INT32 iReason);
-static void NewFileIconCallback(MOUSE_REGION* pRegion, INT32 iReason);
+static void NewEmailIconCallback(MOUSE_REGION* pRegion, UINT32 iReason);
+static void NewFileIconCallback(MOUSE_REGION* pRegion, UINT32 iReason);
 
 
 static void CreateDestroyMouseRegionForNewMailIcon(void)
@@ -3030,7 +3030,7 @@ static void CreateDestroyMouseRegionForNewMailIcon(void)
 }
 
 
-static void NewEmailIconCallback(MOUSE_REGION* pRegion, INT32 iReason)
+static void NewEmailIconCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -3043,7 +3043,7 @@ static void NewEmailIconCallback(MOUSE_REGION* pRegion, INT32 iReason)
 }
 
 
-static void NewFileIconCallback(MOUSE_REGION* pRegion, INT32 iReason)
+static void NewFileIconCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{

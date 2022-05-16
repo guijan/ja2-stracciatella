@@ -134,15 +134,15 @@ static MOUSE_REGION gMapPauseRegion;
 static MOUSE_REGION gTimeCompressionMask[3];
 
 
-static void BtnLaptopCallback(GUI_BUTTON *btn, INT32 reason);
-static void BtnTacticalCallback(GUI_BUTTON *btn, INT32 reason);
-static void BtnOptionsFromMapScreenCallback(GUI_BUTTON *btn, INT32 reason);
+static void BtnLaptopCallback(GUI_BUTTON *btn, UINT32 reason);
+static void BtnTacticalCallback(GUI_BUTTON *btn, UINT32 reason);
+static void BtnOptionsFromMapScreenCallback(GUI_BUTTON *btn, UINT32 reason);
 
-static void BtnTimeCompressMoreMapScreenCallback(GUI_BUTTON *btn, INT32 reason);
-static void BtnTimeCompressLessMapScreenCallback(GUI_BUTTON *btn, INT32 reason);
+static void BtnTimeCompressMoreMapScreenCallback(GUI_BUTTON *btn, UINT32 reason);
+static void BtnTimeCompressLessMapScreenCallback(GUI_BUTTON *btn, UINT32 reason);
 
-static void BtnMessageDownMapScreenCallback(GUI_BUTTON *btn, INT32 reason);
-static void BtnMessageUpMapScreenCallback(GUI_BUTTON *btn, INT32 reason);
+static void BtnMessageDownMapScreenCallback(GUI_BUTTON *btn, UINT32 reason);
+static void BtnMessageUpMapScreenCallback(GUI_BUTTON *btn, UINT32 reason);
 
 
 static void LoadMessageSliderBar(void);
@@ -313,7 +313,7 @@ static void DestroyButtonsForMapScreenInterfaceBottom()
 }
 
 
-static void BtnLaptopCallback(GUI_BUTTON *btn, INT32 reason)
+static void BtnLaptopCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
 	{
@@ -327,7 +327,7 @@ static void BtnLaptopCallback(GUI_BUTTON *btn, INT32 reason)
 }
 
 
-static void BtnTacticalCallback(GUI_BUTTON *btn, INT32 reason)
+static void BtnTacticalCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
 	{
@@ -341,7 +341,7 @@ static void BtnTacticalCallback(GUI_BUTTON *btn, INT32 reason)
 }
 
 
-static void BtnOptionsFromMapScreenCallback(GUI_BUTTON *btn, INT32 reason)
+static void BtnOptionsFromMapScreenCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
 	{
@@ -372,7 +372,7 @@ static void DrawNameOfLoadedSector()
 }
 
 
-static void CompressModeClickCallback(MOUSE_REGION* pRegion, INT32 iReason)
+static void CompressModeClickCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if( iReason & ( MSYS_CALLBACK_REASON_RBUTTON_UP | MSYS_CALLBACK_REASON_LBUTTON_UP ) )
 	{
@@ -383,7 +383,7 @@ static void CompressModeClickCallback(MOUSE_REGION* pRegion, INT32 iReason)
 }
 
 
-static void BtnTimeCompressMoreMapScreenCallback(GUI_BUTTON *btn, INT32 reason)
+static void BtnTimeCompressMoreMapScreenCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
 	{
@@ -403,7 +403,7 @@ static void BtnTimeCompressMoreMapScreenCallback(GUI_BUTTON *btn, INT32 reason)
 }
 
 
-static void BtnTimeCompressLessMapScreenCallback(GUI_BUTTON *btn, INT32 reason)
+static void BtnTimeCompressLessMapScreenCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
 	{
@@ -423,7 +423,7 @@ static void BtnTimeCompressLessMapScreenCallback(GUI_BUTTON *btn, INT32 reason)
 }
 
 
-static void BtnMessageDownMapScreenCallback(GUI_BUTTON *btn, INT32 reason)
+static void BtnMessageDownMapScreenCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	static UINT32 uiLastRepeatScrollTime = 0;
 
@@ -470,7 +470,7 @@ static void BtnMessageDownMapScreenCallback(GUI_BUTTON *btn, INT32 reason)
 }
 
 
-static void BtnMessageUpMapScreenCallback(GUI_BUTTON *btn, INT32 reason)
+static void BtnMessageUpMapScreenCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	static UINT32 uiLastRepeatScrollTime = 0;
 
@@ -625,7 +625,7 @@ static void DeleteMessageSliderBar(void)
 }
 
 
-static void MapScreenMessageBoxCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void MapScreenMessageBoxCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if (iReason & MSYS_CALLBACK_REASON_WHEEL_UP)
 	{
@@ -641,7 +641,7 @@ static void MapScreenMessageBoxCallBack(MOUSE_REGION* pRegion, INT32 iReason)
 static MOUSE_REGION MapMessageBoxRegion;
 
 
-static void MapScreenMessageScrollBarCallBack(MOUSE_REGION* pRegion, INT32 iReason);
+static void MapScreenMessageScrollBarCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
 
 
 static void CreateMapScreenBottomMessageScrollBarRegion(void)
@@ -671,7 +671,7 @@ static void DeleteMapScreenBottomMessageScrollRegion(void)
 }
 
 
-static void MapScreenMessageScrollBarCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void MapScreenMessageScrollBarCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	UINT8	ubDesiredSliderOffset;
 	UINT8 ubDesiredMessageIndex;
@@ -944,7 +944,7 @@ static void DisplayCurrentBalanceForMapBottom(void)
 }
 
 
-static void CompressMaskClickCallback(MOUSE_REGION* pRegion, INT32 iReason);
+static void CompressMaskClickCallback(MOUSE_REGION* pRegion, UINT32 iReason);
 
 
 void CreateDestroyMouseRegionMasksForTimeCompressionButtons()
@@ -969,7 +969,7 @@ void CreateDestroyMouseRegionMasksForTimeCompressionButtons()
 }
 
 
-static void CompressMaskClickCallback(MOUSE_REGION* pRegion, INT32 iReason)
+static void CompressMaskClickCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if( iReason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{

@@ -111,14 +111,14 @@ static void MakeButton(UINT idx, INT16 y, GUI_CALLBACK click, const ST::string& 
 }
 
 
-static void ClearPlacementsCallback(GUI_BUTTON* btn, INT32 reason);
-static void DoneOverheadPlacementClickCallback(GUI_BUTTON* btn, INT32 reason);
-static void GroupPlacementsCallback(GUI_BUTTON* btn, INT32 reason);
-static void MercClickCallback(MOUSE_REGION* reg, INT32 reason);
-static void MercMoveCallback(MOUSE_REGION* reg, INT32 reason);
+static void ClearPlacementsCallback(GUI_BUTTON* btn, UINT32 reason);
+static void DoneOverheadPlacementClickCallback(GUI_BUTTON* btn, UINT32 reason);
+static void GroupPlacementsCallback(GUI_BUTTON* btn, UINT32 reason);
+static void MercClickCallback(MOUSE_REGION* reg, UINT32 reason);
+static void MercMoveCallback(MOUSE_REGION* reg, UINT32 reason);
 static void PlaceMercs(void);
 static void SetCursorMerc(INT8 placement);
-static void SpreadPlacementsCallback(GUI_BUTTON* btn, INT32 reason);
+static void SpreadPlacementsCallback(GUI_BUTTON* btn, UINT32 reason);
 
 
 void InitTacticalPlacementGUI()
@@ -597,7 +597,7 @@ static void PlaceMercs(void)
 }
 
 
-static void DoneOverheadPlacementClickCallback(GUI_BUTTON* btn, INT32 reason)
+static void DoneOverheadPlacementClickCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -606,7 +606,7 @@ static void DoneOverheadPlacementClickCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void SpreadPlacementsCallback(GUI_BUTTON* btn, INT32 reason)
+static void SpreadPlacementsCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -621,7 +621,7 @@ static void SpreadPlacementsCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void GroupPlacementsCallback(GUI_BUTTON* btn, INT32 reason)
+static void GroupPlacementsCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -644,7 +644,7 @@ static void GroupPlacementsCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void ClearPlacementsCallback(GUI_BUTTON* btn, INT32 reason)
+static void ClearPlacementsCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -656,7 +656,7 @@ static void ClearPlacementsCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void MercMoveCallback(MOUSE_REGION* reg, INT32 reason)
+static void MercMoveCallback(MOUSE_REGION* reg, UINT32 reason)
 {
 	if( reg->uiFlags & MSYS_MOUSE_IN_AREA )
 	{
@@ -680,7 +680,7 @@ static void MercMoveCallback(MOUSE_REGION* reg, INT32 reason)
 }
 
 
-static void MercClickCallback(MOUSE_REGION* reg, INT32 reason)
+static void MercClickCallback(MOUSE_REGION* reg, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_DWN )
 	{

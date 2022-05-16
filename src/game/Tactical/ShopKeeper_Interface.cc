@@ -338,23 +338,23 @@ static ITEM_TO_ADD_AFTER_SKI_OPEN gItemToAdd;
 
 
 //Page up buttons for the merchants
-static void BtnSKI_InvPageUpButtonCallback(GUI_BUTTON* btn, INT32 reason);
+static void BtnSKI_InvPageUpButtonCallback(GUI_BUTTON* btn, UINT32 reason);
 static BUTTON_PICS* guiSKI_InvPageUpButtonImage;
 static GUIButtonRef guiSKI_InvPageUpButton;
 
 //Page down buttons for the merchants
-static void BtnSKI_InvPageDownButtonCallback(GUI_BUTTON* btn, INT32 reason);
+static void BtnSKI_InvPageDownButtonCallback(GUI_BUTTON* btn, UINT32 reason);
 static BUTTON_PICS* guiSKI_InvPageDownButtonImage;
 static GUIButtonRef guiSKI_InvPageDownButton;
 
 
 //Transaction buttons
-static void BtnSKI_TransactionButtonCallback(GUI_BUTTON* btn, INT32 reason);
+static void BtnSKI_TransactionButtonCallback(GUI_BUTTON* btn, UINT32 reason);
 static BUTTON_PICS* guiSKI_TransactionButtonImage;
 static GUIButtonRef guiSKI_TransactionButton;
 
 //Done buttons
-static void BtnSKI_DoneButtonCallback(GUI_BUTTON* btn, INT32 reason);
+static void BtnSKI_DoneButtonCallback(GUI_BUTTON* btn, UINT32 reason);
 static BUTTON_PICS* guiSKI_DoneButtonImage;
 static GUIButtonRef guiSKI_DoneButton;
 
@@ -539,9 +539,9 @@ static BOOLEAN InitShopKeepersFace(UINT8 ubMercID);
 static void InitializeShopKeeper(BOOLEAN fResetPage);
 static BOOLEAN OfferObjectToDealer(OBJECTTYPE* pComplexObject, UINT8 ubOwnerProfileId, INT8 bOwnerSlotId);
 static void ResetAllQuoteSaidFlags();
-static void SelectArmsDealersDropItemToGroundMovementRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason);
-static void SelectArmsDealersDropItemToGroundRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason);
-static void SelectArmsDealersFaceRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason);
+static void SelectArmsDealersDropItemToGroundMovementRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
+static void SelectArmsDealersDropItemToGroundRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
+static void SelectArmsDealersFaceRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
 
 
 static void EnterShopKeeperInterface(void)
@@ -1132,7 +1132,7 @@ static void ShopInventoryPageDown()
 }
 
 
-static void BtnSKI_InvPageUpButtonCallback(GUI_BUTTON* btn, INT32 reason)
+static void BtnSKI_InvPageUpButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -1141,7 +1141,7 @@ static void BtnSKI_InvPageUpButtonCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void BtnSKI_InvPageDownButtonCallback(GUI_BUTTON* btn, INT32 reason)
+static void BtnSKI_InvPageDownButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -1153,7 +1153,7 @@ static void BtnSKI_InvPageDownButtonCallback(GUI_BUTTON* btn, INT32 reason)
 static void PerformTransaction(UINT32 uiMoneyFromPlayersAccount);
 
 
-static void BtnSKI_TransactionButtonCallback(GUI_BUTTON* btn, INT32 reason)
+static void BtnSKI_TransactionButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -1171,7 +1171,7 @@ static void BtnSKI_TransactionButtonCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void BtnSKI_DoneButtonCallback(GUI_BUTTON* btn, INT32 reason)
+static void BtnSKI_DoneButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -1180,7 +1180,7 @@ static void BtnSKI_DoneButtonCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void DealerInventoryScrollRegionCallback(MOUSE_REGION* const, INT32 const reason)
+static void DealerInventoryScrollRegionCallback(MOUSE_REGION* const, UINT32 const reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_WHEEL_UP)
 	{
@@ -1193,12 +1193,12 @@ static void DealerInventoryScrollRegionCallback(MOUSE_REGION* const, INT32 const
 }
 
 
-static void SelectDealersInventoryMovementRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason);
-static void SelectDealersInventoryRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason);
-static void SelectDealersOfferSlotsMovementRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason);
-static void SelectDealersOfferSlotsRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason);
-static void SelectPlayersOfferSlotsMovementRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason);
-static void SelectPlayersOfferSlotsRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason);
+static void SelectDealersInventoryMovementRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
+static void SelectDealersInventoryRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
+static void SelectDealersOfferSlotsMovementRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
+static void SelectDealersOfferSlotsRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
+static void SelectPlayersOfferSlotsMovementRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
+static void SelectPlayersOfferSlotsRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
 
 
 static void CreateSkiInventorySlotMouseRegions(void)
@@ -1294,7 +1294,7 @@ static void InitShopKeeperItemDescBox(OBJECTTYPE* pObject, UINT8 ubPocket, UINT8
 
 
 //Mouse Call back for the Arms traders inventory slot
-static void SelectDealersInventoryRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void SelectDealersInventoryRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -1435,7 +1435,7 @@ static void SelectDealersInventoryRegionCallBack(MOUSE_REGION* pRegion, INT32 iR
 }
 
 
-static void SelectDealersInventoryMovementRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void SelectDealersInventoryMovementRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	UINT8 ubSelectedInvSlot = (UINT8)MSYS_GetRegionUserData( pRegion, 0 );
 	ubSelectedInvSlot += gSelectArmsDealerInfo.ubFirstItemIndexOnPage;
@@ -1469,7 +1469,7 @@ static void SelectDealersInventoryMovementRegionCallBack(MOUSE_REGION* pRegion, 
 }
 
 
-static void SelectDealersOfferSlotsMovementRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void SelectDealersOfferSlotsMovementRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	UINT8 ubSelectedInvSlot = (UINT8)MSYS_GetRegionUserData( pRegion, 0 );
 	const INVENTORY_IN_SLOT* const a = &ArmsDealerOfferArea[ubSelectedInvSlot];
@@ -1494,7 +1494,7 @@ static void SelectDealersOfferSlotsMovementRegionCallBack(MOUSE_REGION* pRegion,
 }
 
 
-static void SelectPlayersOfferSlotsMovementRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void SelectPlayersOfferSlotsMovementRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	UINT8 ubSelectedInvSlot = (UINT8)MSYS_GetRegionUserData( pRegion, 0 );
 	const INVENTORY_IN_SLOT* const o = &PlayersOfferArea[ubSelectedInvSlot];
@@ -1527,7 +1527,7 @@ static BOOLEAN RemoveRepairItemFromDealersOfferArea(INT8 bSlot);
 
 
 //Mouse Call back for the dealer's OFFER slot
-static void SelectDealersOfferSlotsRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void SelectDealersOfferSlotsRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	UINT8	ubSelectedInvSlot = (UINT8)MSYS_GetRegionUserData( pRegion, 0 );
 	INVENTORY_IN_SLOT* const a = &ArmsDealerOfferArea[ubSelectedInvSlot];
@@ -1650,7 +1650,7 @@ static BOOLEAN RemoveItemFromPlayersOfferArea(INT8 bSlot);
 
 
 //Mouse Call back for the Players OFFER slot
-static void SelectPlayersOfferSlotsRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void SelectPlayersOfferSlotsRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	UINT8 ubSelectedInvSlot = (UINT8)MSYS_GetRegionUserData( pRegion, 0 );
 	INVENTORY_IN_SLOT* const o = &PlayersOfferArea[ubSelectedInvSlot];
@@ -4140,7 +4140,7 @@ static bool IsGunOrAmmoOfSameTypeSelected(OBJECTTYPE const& o)
 }
 
 
-static void ShopKeeperSubTitleRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason);
+static void ShopKeeperSubTitleRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
 
 
 void InitShopKeeperSubTitledText(const ST::string& str)
@@ -4215,7 +4215,7 @@ static bool AreThereItemsInThePlayersOfferArea()
 
 
 //Mouse Call back for the Arms traders inventory slot
-static void ShopKeeperSubTitleRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void ShopKeeperSubTitleRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP || iReason & MSYS_CALLBACK_REASON_RBUTTON_UP)
 	{
@@ -4225,7 +4225,7 @@ static void ShopKeeperSubTitleRegionCallBack(MOUSE_REGION* pRegion, INT32 iReaso
 
 
 //Mouse Call back for the Arms delaers face
-static void SelectArmsDealersFaceRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void SelectArmsDealersFaceRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP || iReason & MSYS_CALLBACK_REASON_RBUTTON_UP)
 	{
@@ -6096,7 +6096,7 @@ static void DelayRepairsInProgressBy(UINT32 uiMinutesDelayed)
 
 
 //Mouse Call back for the Arms delaers face
-static void SelectArmsDealersDropItemToGroundRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void SelectArmsDealersDropItemToGroundRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -6131,7 +6131,7 @@ static void SelectArmsDealersDropItemToGroundRegionCallBack(MOUSE_REGION* pRegio
 static BOOLEAN CanTheDropItemToGroundStringBeDisplayed(void);
 
 
-static void SelectArmsDealersDropItemToGroundMovementRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void SelectArmsDealersDropItemToGroundMovementRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if( iReason & MSYS_CALLBACK_REASON_LOST_MOUSE )
 	{

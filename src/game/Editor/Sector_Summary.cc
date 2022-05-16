@@ -226,21 +226,21 @@ static GUIButtonRef MakeRadioButton(INT16 const x, INT16 const y, GUI_CALLBACK c
 
 
 static void LoadGlobalSummary(void);
-static void MapClickCallback(MOUSE_REGION* reg, INT32 reason);
-static void MapMoveCallback(MOUSE_REGION* reg, INT32 reason);
+static void MapClickCallback(MOUSE_REGION* reg, UINT32 reason);
+static void MapMoveCallback(MOUSE_REGION* reg, UINT32 reason);
 static void ReleaseSummaryWindow(void);
-static void SummaryEnemyCallback(GUI_BUTTON* btn, INT32 reason);
-static void SummaryLoadMapCallback(GUI_BUTTON* btn, INT32 reason);
-static void SummaryOkayCallback(GUI_BUTTON* btn, INT32 reason);
-static void SummaryOverrideCallback(GUI_BUTTON* btn, INT32 reason);
-static void SummaryRealCallback(GUI_BUTTON* btn, INT32 reason);
-static void SummarySaveMapCallback(GUI_BUTTON* btn, INT32 reason);
-static void SummarySciFiCallback(GUI_BUTTON* btn, INT32 reason);
-static void SummaryToggleAlternateCallback(GUI_BUTTON* btn, INT32 reason);
-static void SummaryToggleGridCallback(GUI_BUTTON* btn, INT32 reason);
-static void SummaryToggleLevelCallback(GUI_BUTTON* btn, INT32 reason);
-static void SummaryToggleProgressCallback(GUI_BUTTON* btn, INT32 reason);
-static void SummaryUpdateCallback(GUI_BUTTON* btn, INT32 reason);
+static void SummaryEnemyCallback(GUI_BUTTON* btn, UINT32 reason);
+static void SummaryLoadMapCallback(GUI_BUTTON* btn, UINT32 reason);
+static void SummaryOkayCallback(GUI_BUTTON* btn, UINT32 reason);
+static void SummaryOverrideCallback(GUI_BUTTON* btn, UINT32 reason);
+static void SummaryRealCallback(GUI_BUTTON* btn, UINT32 reason);
+static void SummarySaveMapCallback(GUI_BUTTON* btn, UINT32 reason);
+static void SummarySciFiCallback(GUI_BUTTON* btn, UINT32 reason);
+static void SummaryToggleAlternateCallback(GUI_BUTTON* btn, UINT32 reason);
+static void SummaryToggleGridCallback(GUI_BUTTON* btn, UINT32 reason);
+static void SummaryToggleLevelCallback(GUI_BUTTON* btn, UINT32 reason);
+static void SummaryToggleProgressCallback(GUI_BUTTON* btn, UINT32 reason);
+static void SummaryUpdateCallback(GUI_BUTTON* btn, UINT32 reason);
 
 
 void CreateSummaryWindow()
@@ -1525,7 +1525,7 @@ void UpdateSectorSummary(const ST::string& gszFilename, BOOLEAN fUpdate)
 }
 
 
-static void SummaryOkayCallback(GUI_BUTTON* btn, INT32 reason)
+static void SummaryOkayCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -1534,7 +1534,7 @@ static void SummaryOkayCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void SummaryToggleGridCallback(GUI_BUTTON* btn, INT32 reason)
+static void SummaryToggleGridCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -1544,7 +1544,7 @@ static void SummaryToggleGridCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void SummaryToggleAlternateCallback(GUI_BUTTON* btn, INT32 reason)
+static void SummaryToggleAlternateCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -1563,7 +1563,7 @@ static void SummaryToggleAlternateCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void SummarySciFiCallback(GUI_BUTTON* btn, INT32 reason)
+static void SummarySciFiCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -1578,7 +1578,7 @@ static void SummarySciFiCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void SummaryRealCallback(GUI_BUTTON* btn, INT32 reason)
+static void SummaryRealCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -1593,7 +1593,7 @@ static void SummaryRealCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void SummaryEnemyCallback(GUI_BUTTON* btn, INT32 reason)
+static void SummaryEnemyCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -1608,7 +1608,7 @@ static void SummaryEnemyCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void SummaryToggleProgressCallback(GUI_BUTTON* btn, INT32 reason)
+static void SummaryToggleProgressCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -1749,7 +1749,7 @@ static void CreateGlobalSummary(void)
 }
 
 
-static void MapMoveCallback(MOUSE_REGION* reg, INT32 reason)
+static void MapMoveCallback(MOUSE_REGION* reg, UINT32 reason)
 {
 	static SGPSector gsPrev;
 	//calc current sector highlighted.
@@ -1769,7 +1769,7 @@ static void MapMoveCallback(MOUSE_REGION* reg, INT32 reason)
 }
 
 
-static void MapClickCallback(MOUSE_REGION* reg, INT32 reason)
+static void MapClickCallback(MOUSE_REGION* reg, UINT32 reason)
 {
 	static SGPSector sLast(-1, -1);
 	//calc current sector selected.
@@ -1855,7 +1855,7 @@ static void MapClickCallback(MOUSE_REGION* reg, INT32 reason)
 }
 
 
-static void SummaryToggleLevelCallback(GUI_BUTTON* btn, INT32 reason)
+static void SummaryToggleLevelCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	INT8 i;
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
@@ -1897,7 +1897,7 @@ static void SummaryToggleLevelCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void SummaryLoadMapCallback(GUI_BUTTON* btn, INT32 reason)
+static void SummaryLoadMapCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -1940,7 +1940,7 @@ static void SummaryLoadMapCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void SummarySaveMapCallback(GUI_BUTTON* btn, INT32 reason)
+static void SummarySaveMapCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -1950,7 +1950,7 @@ static void SummarySaveMapCallback(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void SummaryOverrideCallback(GUI_BUTTON* btn, INT32 reason)
+static void SummaryOverrideCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{
@@ -2271,7 +2271,7 @@ static void RegenerateSummaryInfoForAllOutdatedMaps(void)
 }
 
 
-static void SummaryUpdateCallback(GUI_BUTTON* btn, INT32 reason)
+static void SummaryUpdateCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
 	{

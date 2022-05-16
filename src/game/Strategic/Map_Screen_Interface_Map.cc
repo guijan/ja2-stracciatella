@@ -2828,8 +2828,8 @@ void DrawMilitiaPopUpBox()
 static void CreateMilitiaPanelBottomButton(void);
 static void DeleteMilitiaPanelBottomButton(void);
 static void HandleShutDownOfMilitiaPanelIfPeopleOnTheCursor(INT16 sTownValue);
-static void MilitiaRegionClickCallback(MOUSE_REGION*, INT32 reason);
-static void MilitiaRegionMoveCallback(MOUSE_REGION*, INT32 reason);
+static void MilitiaRegionClickCallback(MOUSE_REGION*, UINT32 reason);
+static void MilitiaRegionMoveCallback(MOUSE_REGION*, UINT32 reason);
 
 
 void CreateDestroyMilitiaPopUPRegions(void)
@@ -2979,7 +2979,7 @@ static void ShowHighLightedSectorOnMilitiaMap(void)
 static bool IsThisMilitiaTownSectorAllowable(INT16 sSectorIndexValue);
 
 
-static void MilitiaRegionClickCallback(MOUSE_REGION* const r, INT32 const reason)
+static void MilitiaRegionClickCallback(MOUSE_REGION* const r, UINT32 const reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -2996,7 +2996,7 @@ static void MilitiaRegionClickCallback(MOUSE_REGION* const r, INT32 const reason
 }
 
 
-static void MilitiaRegionMoveCallback(MOUSE_REGION* const r, INT32 const reason)
+static void MilitiaRegionMoveCallback(MOUSE_REGION* const r, UINT32 const reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_GAIN_MOUSE)
 	{
@@ -3012,7 +3012,7 @@ static void MilitiaRegionMoveCallback(MOUSE_REGION* const r, INT32 const reason)
 }
 
 
-static void MilitiaButtonCallback(GUI_BUTTON* btn, INT32 reason);
+static void MilitiaButtonCallback(GUI_BUTTON* btn, UINT32 reason);
 
 
 void CreateDestroyMilitiaSectorButtons()
@@ -3090,7 +3090,7 @@ static void SetMilitiaMapButtonsText()
 }
 
 
-static void MilitiaButtonCallback(GUI_BUTTON *btn, INT32 reason)
+static void MilitiaButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	INT32 const iValue = btn->GetUserData();
 
@@ -3329,8 +3329,8 @@ static void MakeButton(UINT idx, INT16 x, GUI_CALLBACK click, const ST::string& 
 
 
 static bool CanMilitiaAutoDistribute();
-static void MilitiaAutoButtonCallback(GUI_BUTTON* btn, INT32 reason);
-static void MilitiaDoneButtonCallback(GUI_BUTTON* btn, INT32 reason);
+static void MilitiaAutoButtonCallback(GUI_BUTTON* btn, UINT32 reason);
+static void MilitiaDoneButtonCallback(GUI_BUTTON* btn, UINT32 reason);
 
 
 static void CreateMilitiaPanelBottomButton(void)
@@ -3369,7 +3369,7 @@ static void DeleteMilitiaPanelBottomButton(void)
 }
 
 
-static void MilitiaAutoButtonCallback(GUI_BUTTON *btn, INT32 reason)
+static void MilitiaAutoButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -3380,7 +3380,7 @@ static void MilitiaAutoButtonCallback(GUI_BUTTON *btn, INT32 reason)
 }
 
 
-static void MilitiaDoneButtonCallback(GUI_BUTTON *btn, INT32 reason)
+static void MilitiaDoneButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{

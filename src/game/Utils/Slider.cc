@@ -91,8 +91,8 @@ void ShutDownSlider(void)
 
 
 static void CalculateNewSliderBoxPosition(SLIDER* pSlider);
-static void SelectedSliderButtonCallBack(MOUSE_REGION* r, INT32 iReason);
-static void SelectedSliderMovementCallBack(MOUSE_REGION* r, INT32 reason);
+static void SelectedSliderButtonCallBack(MOUSE_REGION* r, UINT32 iReason);
+static void SelectedSliderMovementCallBack(MOUSE_REGION* r, UINT32 reason);
 
 
 SLIDER* AddSlider(UINT8 ubStyle, UINT16 usCursor, UINT16 usPosX, UINT16 usPosY, UINT16 usWidth, UINT16 usNumberOfIncrements, INT8 sPriority, SLIDER_CHANGE_CALLBACK SliderChangeCallback)
@@ -273,7 +273,7 @@ void RemoveSliderBar(SLIDER* s)
 }
 
 
-static void SelectedSliderMovementCallBack(MOUSE_REGION* r, INT32 reason)
+static void SelectedSliderMovementCallBack(MOUSE_REGION* r, UINT32 reason)
 {
 	//if we already have an anchored slider bar
 	if (gpCurrentSlider != NULL) return;
@@ -313,7 +313,7 @@ static void SetSliderPos(SLIDER* s, INT32 pos)
 }
 
 
-static void SelectedSliderButtonCallBack(MOUSE_REGION* r, INT32 iReason)
+static void SelectedSliderButtonCallBack(MOUSE_REGION* r, UINT32 iReason)
 {
 	//if we already have an anchored slider bar
 	if (gpCurrentSlider != NULL) return;

@@ -215,7 +215,7 @@ void RenderAimHistory()
 }
 
 
-static void BtnHistoryMenuButtonCallback(GUI_BUTTON* btn, INT32 reason);
+static void BtnHistoryMenuButtonCallback(GUI_BUTTON* btn, UINT32 reason);
 
 
 static void InitAimHistoryMenuBar(void)
@@ -287,7 +287,7 @@ static void DisplayAimHistoryParagraph(UINT8 ubPageNum, UINT8 ubNumParagraphs)
 }
 
 
-static void SelectHistoryTocMenuRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason);
+static void SelectHistoryTocMenuRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason);
 
 
 static void InitTocMenu(void)
@@ -335,7 +335,7 @@ static void ChangingAimHistorySubPage(UINT8 ubSubPageNumber);
 static void ResetAimHistoryButtons();
 
 
-static void SelectHistoryTocMenuRegionCallBack(MOUSE_REGION* pRegion, INT32 iReason)
+static void SelectHistoryTocMenuRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if(gfInToc)
 	{
@@ -353,7 +353,7 @@ static void SelectHistoryTocMenuRegionCallBack(MOUSE_REGION* pRegion, INT32 iRea
 }
 
 
-static void BtnHistoryMenuButtonCallback(GUI_BUTTON *btn, INT32 reason)
+static void BtnHistoryMenuButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	UINT8	const ubRetValue = btn->GetUserData();
 

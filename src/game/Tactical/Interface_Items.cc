@@ -1774,11 +1774,11 @@ static void SetAttachmentTooltips(void)
 }
 
 
-static void BtnMoneyButtonCallback(GUI_BUTTON* btn, INT32 reason);
-static void ItemDescAmmoCallback(GUI_BUTTON* btn, INT32 reason);
-static void ItemDescAttachmentsCallback(MOUSE_REGION* pRegion, INT32 iReason);
-static void ItemDescCallback(MOUSE_REGION* pRegion, INT32 iReason);
-static void ItemDescDoneButtonCallback(GUI_BUTTON* btn, INT32 reason);
+static void BtnMoneyButtonCallback(GUI_BUTTON* btn, UINT32 reason);
+static void ItemDescAmmoCallback(GUI_BUTTON* btn, UINT32 reason);
+static void ItemDescAttachmentsCallback(MOUSE_REGION* pRegion, UINT32 iReason);
+static void ItemDescCallback(MOUSE_REGION* pRegion, UINT32 iReason);
+static void ItemDescDoneButtonCallback(GUI_BUTTON* btn, UINT32 reason);
 static void ReloadItemDesc(void);
 
 
@@ -2004,7 +2004,7 @@ static void ReloadItemDesc(void)
 }
 
 
-static void ItemDescAmmoCallback(GUI_BUTTON*  const btn, INT32 const reason)
+static void ItemDescAmmoCallback(GUI_BUTTON*  const btn, UINT32 const reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -2098,7 +2098,7 @@ static void PermanantAttachmentMessageBoxCallBack(MessageBoxReturnValue const ub
 }
 
 
-static void ItemDescAttachmentsCallback(MOUSE_REGION* pRegion, INT32 iReason)
+static void ItemDescAttachmentsCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	UINT32 uiItemPos;
 	static BOOLEAN fRightDown = FALSE;
@@ -3722,8 +3722,8 @@ BOOLEAN InKeyRingPopup( )
 }
 
 
-static void ItemPopupFullRegionCallback(MOUSE_REGION* pRegion, INT32 iReason);
-static void ItemPopupRegionCallback(MOUSE_REGION* pRegion, INT32 iReason);
+static void ItemPopupFullRegionCallback(MOUSE_REGION* pRegion, UINT32 iReason);
+static void ItemPopupRegionCallback(MOUSE_REGION* pRegion, UINT32 iReason);
 
 
 void InitItemStackPopup(SOLDIERTYPE* const pSoldier, UINT8 const ubPosition, INT16 const sInvX, INT16 const sInvY, INT16 const sInvWidth, INT16 const sInvHeight)
@@ -4174,7 +4174,7 @@ std::pair<SGPVObject*, UINT8> GetBigInventoryGraphicForItem(const ItemModel * it
 }
 
 
-static void ItemDescCallback(MOUSE_REGION* pRegion, INT32 iReason)
+static void ItemDescCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	static BOOLEAN fRightDown = FALSE, fLeftDown = FALSE;
 
@@ -4218,7 +4218,7 @@ static void ItemDescCallback(MOUSE_REGION* pRegion, INT32 iReason)
 static void RemoveMoney(void);
 
 
-static void ItemDescDoneButtonCallback(GUI_BUTTON *btn, INT32 reason)
+static void ItemDescDoneButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -4233,7 +4233,7 @@ static void ItemDescDoneButtonCallback(GUI_BUTTON *btn, INT32 reason)
 }
 
 
-static void ItemPopupRegionCallback(MOUSE_REGION* pRegion, INT32 iReason)
+static void ItemPopupRegionCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	UINT32 uiItemPos;
 
@@ -4352,7 +4352,7 @@ static void ItemPopupRegionCallback(MOUSE_REGION* pRegion, INT32 iReason)
 }
 
 
-static void ItemPopupFullRegionCallback(MOUSE_REGION* pRegion, INT32 iReason)
+static void ItemPopupFullRegionCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -4459,13 +4459,13 @@ void SetItemPickupMenuDirty( BOOLEAN fDirtyLevel )
 
 
 static void CalculateItemPickupMenuDimensions(void);
-static void ItemPickMenuMouseClickCallback(MOUSE_REGION* pRegion, INT32 iReason);
-static void ItemPickMenuMouseMoveCallback(MOUSE_REGION* pRegion, INT32 iReason);
-static void ItemPickupAll(GUI_BUTTON* btn, INT32 reason);
-static void ItemPickupCancel(GUI_BUTTON* btn, INT32 reason);
-static void ItemPickupOK(GUI_BUTTON* btn, INT32 reason);
-static void ItemPickupScrollDown(GUI_BUTTON* btn, INT32 reason);
-static void ItemPickupScrollUp(GUI_BUTTON* btn, INT32 reason);
+static void ItemPickMenuMouseClickCallback(MOUSE_REGION* pRegion, UINT32 iReason);
+static void ItemPickMenuMouseMoveCallback(MOUSE_REGION* pRegion, UINT32 iReason);
+static void ItemPickupAll(GUI_BUTTON* btn, UINT32 reason);
+static void ItemPickupCancel(GUI_BUTTON* btn, UINT32 reason);
+static void ItemPickupOK(GUI_BUTTON* btn, UINT32 reason);
+static void ItemPickupScrollDown(GUI_BUTTON* btn, UINT32 reason);
+static void ItemPickupScrollUp(GUI_BUTTON* btn, UINT32 reason);
 static void SetupPickupPage(INT8 bPage);
 
 
@@ -4921,7 +4921,7 @@ void RemoveItemPickupMenu( )
 }
 
 
-static void ItemPickupScrollUp(GUI_BUTTON* btn, INT32 reason)
+static void ItemPickupScrollUp(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -4930,7 +4930,7 @@ static void ItemPickupScrollUp(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void ItemPickupScrollDown(GUI_BUTTON* btn, INT32 reason)
+static void ItemPickupScrollDown(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -4939,7 +4939,7 @@ static void ItemPickupScrollDown(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void ItemPickupAll(GUI_BUTTON* btn, INT32 reason)
+static void ItemPickupAll(GUI_BUTTON* btn, UINT32 reason)
 {
 	INT32 cnt;
 
@@ -4962,7 +4962,7 @@ static void ItemPickupAll(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void ItemPickupOK(GUI_BUTTON* btn, INT32 reason)
+static void ItemPickupOK(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -4975,7 +4975,7 @@ static void ItemPickupOK(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void ItemPickupCancel(GUI_BUTTON* btn, INT32 reason)
+static void ItemPickupCancel(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -4985,7 +4985,7 @@ static void ItemPickupCancel(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void ItemPickMenuMouseMoveCallback(MOUSE_REGION* const pRegion, INT32 const iReason)
+static void ItemPickMenuMouseMoveCallback(MOUSE_REGION* const pRegion, UINT32 const iReason)
 {
 	static BOOLEAN bChecked = FALSE;
 
@@ -5027,7 +5027,7 @@ static void ItemPickMenuMouseMoveCallback(MOUSE_REGION* const pRegion, INT32 con
 }
 
 
-static void ItemPickMenuMouseClickCallback(MOUSE_REGION* const pRegion, INT32 const iReason)
+static void ItemPickMenuMouseClickCallback(MOUSE_REGION* const pRegion, UINT32 const iReason)
 {
 	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -5080,7 +5080,7 @@ BOOLEAN HandleItemPickupMenu( )
 }
 
 
-static void BtnMoneyButtonCallback(GUI_BUTTON* const btn, INT32 const reason)
+static void BtnMoneyButtonCallback(GUI_BUTTON* const btn, UINT32 const reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_RBUTTON_DWN)
 	{

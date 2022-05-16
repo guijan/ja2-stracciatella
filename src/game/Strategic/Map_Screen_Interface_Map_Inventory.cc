@@ -440,7 +440,7 @@ static void InventoryPrevPage()
 
 
 // the screen mask bttn callaback...to disable the inventory and lock out the map itself
-static void MapInvenPoolScreenMaskCallback(MOUSE_REGION* pRegion, INT32 iReason)
+static void MapInvenPoolScreenMaskCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 
 	if( ( iReason & MSYS_CALLBACK_REASON_RBUTTON_UP ) )
@@ -458,8 +458,8 @@ static void MapInvenPoolScreenMaskCallback(MOUSE_REGION* pRegion, INT32 iReason)
 }
 
 
-static void MapInvenPoolSlots(MOUSE_REGION* pRegion, INT32 iReason);
-static void MapInvenPoolSlotsMove(MOUSE_REGION* pRegion, INT32 iReason);
+static void MapInvenPoolSlots(MOUSE_REGION* pRegion, UINT32 iReason);
+static void MapInvenPoolSlotsMove(MOUSE_REGION* pRegion, UINT32 iReason);
 
 
 static void CreateMapInventoryPoolSlots(void)
@@ -497,7 +497,7 @@ static void DestroyMapInventoryPoolSlots()
 }
 
 
-static void MapInvenPoolSlotsMove(MOUSE_REGION* pRegion, INT32 iReason)
+static void MapInvenPoolSlotsMove(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	INT32 iCounter = 0;
 
@@ -527,7 +527,7 @@ static BOOLEAN CanPlayerUseSectorInventory(void);
 static BOOLEAN PlaceObjectInInventoryStash(OBJECTTYPE* pInventorySlot, OBJECTTYPE* pItemPtr);
 
 
-static void MapInvenPoolSlots(MOUSE_REGION* const pRegion, const INT32 iReason)
+static void MapInvenPoolSlots(MOUSE_REGION* const pRegion, const UINT32 iReason)
 {
 	// btn callback handler for assignment screen mask region
 	if (iReason & MSYS_CALLBACK_REASON_RBUTTON_UP)
@@ -634,8 +634,8 @@ static void MapInvenPoolSlots(MOUSE_REGION* const pRegion, const INT32 iReason)
 }
 
 
-static void MapInventoryPoolPrevBtn(GUI_BUTTON* btn, INT32 reason);
-static void MapInventoryPoolNextBtn(GUI_BUTTON* btn, INT32 reason);
+static void MapInventoryPoolPrevBtn(GUI_BUTTON* btn, UINT32 reason);
+static void MapInventoryPoolNextBtn(GUI_BUTTON* btn, UINT32 reason);
 
 
 static void CreateMapInventoryButtons(void)
@@ -949,7 +949,7 @@ void AutoPlaceObjectInInventoryStash(OBJECTTYPE* pItemPtr)
 }
 
 
-static void MapInventoryPoolNextBtn(GUI_BUTTON* btn, INT32 reason)
+static void MapInventoryPoolNextBtn(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -958,7 +958,7 @@ static void MapInventoryPoolNextBtn(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void MapInventoryPoolPrevBtn(GUI_BUTTON* btn, INT32 reason)
+static void MapInventoryPoolPrevBtn(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{
@@ -967,7 +967,7 @@ static void MapInventoryPoolPrevBtn(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void MapInventoryPoolDoneBtn(GUI_BUTTON* btn, INT32 reason)
+static void MapInventoryPoolDoneBtn(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
 	{

@@ -250,7 +250,7 @@ static void LoadNextHistoryPage(void);
 static void LoadPreviousHistoryPage(void);
 
 
-static void ScrollRegionCallback(MOUSE_REGION* const, INT32 const reason)
+static void ScrollRegionCallback(MOUSE_REGION* const, UINT32 const reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_WHEEL_UP)
 	{
@@ -263,8 +263,8 @@ static void ScrollRegionCallback(MOUSE_REGION* const, INT32 const reason)
 }
 
 
-static void BtnHistoryDisplayNextPageCallBack(GUI_BUTTON* btn, INT32 reason);
-static void BtnHistoryDisplayPrevPageCallBack(GUI_BUTTON* btn, INT32 reason);
+static void BtnHistoryDisplayNextPageCallBack(GUI_BUTTON* btn, UINT32 reason);
+static void BtnHistoryDisplayPrevPageCallBack(GUI_BUTTON* btn, UINT32 reason);
 
 
 static void CreateHistoryButtons(void)
@@ -296,7 +296,7 @@ static void DestroyHistoryButtons(void)
 }
 
 
-static void BtnHistoryDisplayPrevPageCallBack(GUI_BUTTON* btn, INT32 reason)
+static void BtnHistoryDisplayPrevPageCallBack(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
 	{
@@ -310,7 +310,7 @@ static void BtnHistoryDisplayPrevPageCallBack(GUI_BUTTON* btn, INT32 reason)
 }
 
 
-static void BtnHistoryDisplayNextPageCallBack(GUI_BUTTON* btn, INT32 reason)
+static void BtnHistoryDisplayNextPageCallBack(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
 	{

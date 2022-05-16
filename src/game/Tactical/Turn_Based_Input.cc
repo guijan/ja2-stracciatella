@@ -2018,10 +2018,8 @@ void GetKeyboardInput(UIEventKind* const puiNewEvent)
 	SGPPoint MousePos;
 	GetMousePos(&MousePos);
 
-	while (DequeueEvent(&InputEvent))
+	while (DequeueSpecificEvent(&InputEvent, KEYBOARD_EVENTS))
 	{
-		MouseSystemHook(InputEvent.usEvent, InputEvent.usParam, MousePos.iX, MousePos.iY);
-
 		// handle for fast help text for interface stuff
 		if( IsTheInterfaceFastHelpTextActive() )
 		{

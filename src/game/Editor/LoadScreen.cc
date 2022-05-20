@@ -536,7 +536,7 @@ static void CreateFileDialog(const ST::string& zTitle)
 
 static void UpdateWorldInfoCallback(GUI_BUTTON* b, UINT32 reason)
 {
-	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if( reason & MSYS_CALLBACK_POINTER_UP )
 		gfUpdateSummaryInfo = b->Clicked();
 }
 
@@ -1003,7 +1003,7 @@ static ScreenID ProcessFileIO(void)
 //LOADSCREEN
 static void FDlgNamesCallback(GUI_BUTTON* butn, UINT32 reason)
 {
-	if( reason & (MSYS_CALLBACK_REASON_LBUTTON_UP) )
+	if( reason & (MSYS_CALLBACK_POINTER_UP) )
 	{
 		SelectFileDialogYPos(butn->RelativeY());
 	}
@@ -1020,7 +1020,7 @@ static void FDlgNamesCallback(GUI_BUTTON* butn, UINT32 reason)
 
 static void FDlgOkCallback(GUI_BUTTON* butn, UINT32 reason)
 {
-	if( reason & (MSYS_CALLBACK_REASON_LBUTTON_UP) )
+	if( reason & (MSYS_CALLBACK_POINTER_UP) )
 	{
 		iFDlgState = iCurrentAction == ACTION_SAVE_MAP ? DIALOG_SAVE : DIALOG_LOAD;
 	}
@@ -1029,7 +1029,7 @@ static void FDlgOkCallback(GUI_BUTTON* butn, UINT32 reason)
 
 static void FDlgCancelCallback(GUI_BUTTON* butn, UINT32 reason)
 {
-	if( reason & (MSYS_CALLBACK_REASON_LBUTTON_UP) )
+	if( reason & (MSYS_CALLBACK_POINTER_UP) )
 	{
 		iFDlgState = DIALOG_CANCEL;
 	}
@@ -1038,7 +1038,7 @@ static void FDlgCancelCallback(GUI_BUTTON* butn, UINT32 reason)
 
 static void FDlgUpCallback(GUI_BUTTON* butn, UINT32 reason)
 {
-	if( reason & (MSYS_CALLBACK_REASON_LBUTTON_UP) )
+	if( reason & (MSYS_CALLBACK_POINTER_UP) )
 	{
 		if(iTopFileShown > 0)
 			iTopFileShown--;
@@ -1048,7 +1048,7 @@ static void FDlgUpCallback(GUI_BUTTON* butn, UINT32 reason)
 
 static void FDlgDwnCallback(GUI_BUTTON* butn, UINT32 reason)
 {
-	if( reason & (MSYS_CALLBACK_REASON_LBUTTON_UP) )
+	if( reason & (MSYS_CALLBACK_POINTER_UP) )
 	{
 		if( (iTopFileShown+7) < (INT32)gFileList.size() )
 			iTopFileShown++;

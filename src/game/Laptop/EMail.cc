@@ -843,7 +843,7 @@ static void EmailBtnCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 	INT32 iCount;
 	if(fDisplayMessageFlag)
 		return;
-	if(iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if(iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		Page* pPage = GetCurrentPage();
 		if (pPage == NULL) return;
@@ -903,7 +903,7 @@ static void EmailBtnCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 
 static void BtnMessageXCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP || reason & MSYS_CALLBACK_REASON_RBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP || reason & MSYS_CALLBACK_REASON_RBUTTON_UP)
 	{
 		// X button has been pressed and let up, this means to stop displaying the currently displayed message
 
@@ -1051,7 +1051,7 @@ static INT32 DisplayEmailMessage(Email* const m)
 
 static void BtnNewOkback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		fNewMailFlag=FALSE;
 	}
@@ -1255,7 +1255,7 @@ void ReDrawNewMailBox(void)
 
 static void NextRegionButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		NextListPage();
 	}
@@ -1264,7 +1264,7 @@ static void NextRegionButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 
 static void BtnPreviousEmailPageCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		PrevMailPage();
 	}
@@ -1273,7 +1273,7 @@ static void BtnPreviousEmailPageCallback(GUI_BUTTON *btn, UINT32 reason)
 
 static void BtnNextEmailPageCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		NextMailPage();
 	}
@@ -1282,7 +1282,7 @@ static void BtnNextEmailPageCallback(GUI_BUTTON *btn, UINT32 reason)
 
 static void PreviousRegionButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		PrevListPage();
 	}
@@ -1291,7 +1291,7 @@ static void PreviousRegionButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 
 static void BtnDeleteNoback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		MailToDelete = NULL;
 		fReDrawScreenFlag = TRUE;
@@ -1304,7 +1304,7 @@ static void DeleteEmail(void);
 
 static void BtnDeleteYesback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		fReDrawScreenFlag = TRUE;
 		DeleteEmail();
@@ -1426,7 +1426,7 @@ static void DeleteEmail(void)
 
 static void FromCallback(GUI_BUTTON *btn, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// sort messages based on sender name, then replace into pages of email
 		fSortSenderUpwards = !fSortSenderUpwards;
@@ -1438,7 +1438,7 @@ static void FromCallback(GUI_BUTTON *btn, UINT32 iReason)
 
 static void SubjectCallback(GUI_BUTTON *btn, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// sort message on subject and reorder list
 		fSortSubjectUpwards = !fSortSubjectUpwards;
@@ -1450,7 +1450,7 @@ static void SubjectCallback(GUI_BUTTON *btn, UINT32 iReason)
 
 static void BtnDeleteCallback(GUI_BUTTON *btn, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		MailToDelete = CurrentMail;
 	}
@@ -1459,7 +1459,7 @@ static void BtnDeleteCallback(GUI_BUTTON *btn, UINT32 iReason)
 
 static void DateCallback(GUI_BUTTON *btn, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// sort messages based on date recieved and reorder lsit
 		fSortDateUpwards = !fSortDateUpwards;
@@ -1471,7 +1471,7 @@ static void DateCallback(GUI_BUTTON *btn, UINT32 iReason)
 
 static void ReadCallback(GUI_BUTTON *btn, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// sort messages based on date recieved and reorder lsit
 		SortMessages(READ);

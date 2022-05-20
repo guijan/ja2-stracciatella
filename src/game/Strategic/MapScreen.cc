@@ -3787,7 +3787,7 @@ static void MAPInvClickCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 
 	uiHandPos = MSYS_GetRegionUserData( pRegion, 0 );
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// If we do not have an item in hand, start moving it
 		if ( gpItemPointer == NULL )
@@ -4364,7 +4364,7 @@ static void DestroyMouseRegionsForTeamList(void)
 
 static void MapScreenMarkRegionBtnCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// reset selected characters
 		ResetAllSelectedCharacterModes( );
@@ -4381,7 +4381,7 @@ static void ContractButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	if (g_dialogue_box) return;
 
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (reason & MSYS_CALLBACK_POINTER_DWN)
 	{
 #if 0 // XXX was commented out
 		if (bSelectedDestChar != -1 || fPlotForHelicopter)
@@ -4394,7 +4394,7 @@ static void ContractButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 		// redraw region
 		if (btn->Area.uiFlags & MSYS_HAS_BACKRECT) fCharacterInfoPanelDirty = TRUE;
 	}
-	else if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	else if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		RequestContractMenu();
 	}
@@ -4415,7 +4415,7 @@ static void TeamListInfoRegionBtnCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 
 	iValue = MSYS_GetRegionUserData( pRegion, 0 );
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// set to new info character...make sure is valid
 		const SOLDIERTYPE* const pSoldier = gCharactersList[iValue].merc;
@@ -4519,7 +4519,7 @@ static void TeamListAssignmentRegionBtnCallBack(MOUSE_REGION* pRegion, UINT32 iR
 
 	iValue = MSYS_GetRegionUserData( pRegion, 0 );
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// set to new info character...make sure is valid
 		const SOLDIERTYPE* const pSoldier = gCharactersList[iValue].merc;
@@ -4667,7 +4667,7 @@ static void TeamListDestinationRegionBtnCallBack(MOUSE_REGION* pRegion, UINT32 i
 
 	iValue = MSYS_GetRegionUserData( pRegion, 0 );
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		SOLDIERTYPE* const s = gCharactersList[iValue].merc;
 		if (s != NULL)
@@ -4812,7 +4812,7 @@ static void TeamListSleepRegionBtnCallBack(MOUSE_REGION* pRegion, UINT32 iReason
 
 	iValue = MSYS_GetRegionUserData( pRegion, 0 );
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// set to new info character...make sure is valid.. not in transit and alive and concious
 		SOLDIERTYPE* const pSoldier = gCharactersList[iValue].merc;
@@ -4933,7 +4933,7 @@ static void TeamListContractRegionBtnCallBack(MOUSE_REGION* pRegion, UINT32 iRea
 
 	if (gCharactersList[iValue].merc != NULL)
 	{
-		if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+		if (iReason & MSYS_CALLBACK_POINTER_UP)
 		{
 			// select ONLY this dude
 			ChangeSelectedInfoChar( ( INT8 ) iValue, TRUE );
@@ -5284,7 +5284,7 @@ static void ContractRegionBtnCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 
 	if (g_dialogue_box) return;
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		SOLDIERTYPE* const pSoldier = GetSelectedInfoChar();
 		if (CanExtendContractForSoldier(pSoldier))
@@ -5868,7 +5868,7 @@ static void FaceRegionBtnCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 	// error checking, make sure someone is there
 	if (GetSelectedInfoChar() == NULL) return;
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		if (gfPreBattleInterfaceActive) return;
 
@@ -5886,7 +5886,7 @@ static void FaceRegionBtnCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 static void ItemRegionBtnCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	// left AND right button are handled the same way
-	if (iReason & ( MSYS_CALLBACK_REASON_RBUTTON_UP | MSYS_CALLBACK_REASON_LBUTTON_UP ) )
+	if (iReason & ( MSYS_CALLBACK_REASON_RBUTTON_UP | MSYS_CALLBACK_POINTER_UP ) )
 	{
 		RequestToggleMercInventoryPanel();
 	}
@@ -6001,7 +6001,7 @@ static void TrashItemMessageBoxCallBack(MessageBoxReturnValue const bExitValue)
 
 static void TrashCanBtnCallback(MOUSE_REGION*, UINT32 const reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// Check if an item is in the cursor, if so, warn player
 		if (OBJECTTYPE* const o = gpItemPointer)
@@ -6123,7 +6123,7 @@ static void CreateDestroyTrashCanRegion(void)
 static void DoneInventoryMapBtnCallback(GUI_BUTTON* btn, UINT32 reason)
 {
 	// prevent inventory from being closed while stack popup up!
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		if (!fMapInventoryItem && !InItemStackPopup())
 		{
@@ -6378,7 +6378,7 @@ static void UpdateTheStateOfTheNextPrevMapScreenCharacterButtons(void)
 
 static void PrevInventoryMapBtnCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		GoToPrevCharacterInList();
 	}
@@ -6387,7 +6387,7 @@ static void PrevInventoryMapBtnCallback(GUI_BUTTON *btn, UINT32 reason)
 
 static void NextInventoryMapBtnCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		GoToNextCharacterInList();
 	}
@@ -6507,7 +6507,7 @@ static void MapSortBtnCallback(GUI_BUTTON *btn, UINT32 reason)
 	// grab the button index value for the sort buttons
 	INT32 const iValue = btn->GetUserData();
 
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		ChangeCharacterListSortMethod( iValue );
 	}

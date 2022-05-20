@@ -1134,7 +1134,7 @@ static void ShopInventoryPageDown()
 
 static void BtnSKI_InvPageUpButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		ShopInventoryPageUp();
 	}
@@ -1143,7 +1143,7 @@ static void BtnSKI_InvPageUpButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnSKI_InvPageDownButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		ShopInventoryPageDown();
 	}
@@ -1155,7 +1155,7 @@ static void PerformTransaction(UINT32 uiMoneyFromPlayersAccount);
 
 static void BtnSKI_TransactionButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// if not already doing it (multiple clicks can be queued up while shopkeeper is still talking)
 		if ( !gfPerformTransactionInProgress )
@@ -1173,7 +1173,7 @@ static void BtnSKI_TransactionButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnSKI_DoneButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		ExitSKIRequested();
 	}
@@ -1296,7 +1296,7 @@ static void InitShopKeeperItemDescBox(OBJECTTYPE* pObject, UINT8 ubPocket, UINT8
 //Mouse Call back for the Arms traders inventory slot
 static void SelectDealersInventoryRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		UINT8 ubSelectedInvSlot = (UINT8)MSYS_GetRegionUserData( pRegion, 0 );
 		INT8  ubLocation;
@@ -1557,7 +1557,7 @@ static void SelectDealersOfferSlotsRegionCallBack(MOUSE_REGION* pRegion, UINT32 
 			}
 		}
 	}
-	else if( iReason & MSYS_CALLBACK_REASON_LBUTTON_UP ) //MSYS_CALLBACK_REASON_LBUTTON_UP)
+	else if( iReason & MSYS_CALLBACK_POINTER_UP ) //MSYS_CALLBACK_POINTER_UP)
 	{
 		/*
 		//if the current merc is disabled for whatever reason
@@ -1656,7 +1656,7 @@ static void SelectPlayersOfferSlotsRegionCallBack(MOUSE_REGION* pRegion, UINT32 
 	INVENTORY_IN_SLOT* const o = &PlayersOfferArea[ubSelectedInvSlot];
 	INT8 bAddedToSlotID = -1;
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		//if the cursor has no item in it
 		if( gMoveingItem.sItemIndex == 0 )
@@ -1729,7 +1729,7 @@ static void SelectPlayersOfferSlotsRegionCallBack(MOUSE_REGION* pRegion, UINT32 
 			gubSkiDirtyLevel = SKI_DIRTY_LEVEL2;
 		}
 	}
-	else if(iReason & MSYS_CALLBACK_REASON_RBUTTON_UP ) //MSYS_CALLBACK_REASON_LBUTTON_UP)
+	else if(iReason & MSYS_CALLBACK_REASON_RBUTTON_UP ) //MSYS_CALLBACK_POINTER_UP)
 	{
 		//if the box is active
 		if (o->fActive)
@@ -4217,7 +4217,7 @@ static bool AreThereItemsInThePlayersOfferArea()
 //Mouse Call back for the Arms traders inventory slot
 static void ShopKeeperSubTitleRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP || iReason & MSYS_CALLBACK_REASON_RBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP || iReason & MSYS_CALLBACK_REASON_RBUTTON_UP)
 	{
 		ShutUpShopKeeper();
 	}
@@ -4227,7 +4227,7 @@ static void ShopKeeperSubTitleRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReas
 //Mouse Call back for the Arms delaers face
 static void SelectArmsDealersFaceRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP || iReason & MSYS_CALLBACK_REASON_RBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP || iReason & MSYS_CALLBACK_REASON_RBUTTON_UP)
 	{
 		ShutUpShopKeeper();
 	}
@@ -6098,7 +6098,7 @@ static void DelayRepairsInProgressBy(UINT32 uiMinutesDelayed)
 //Mouse Call back for the Arms delaers face
 static void SelectArmsDealersDropItemToGroundRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		SOLDIERTYPE *pDropSoldier;
 

@@ -315,12 +315,12 @@ static void DestroyButtonsForMapScreenInterfaceBottom()
 
 static void BtnLaptopCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (reason & MSYS_CALLBACK_POINTER_DWN)
 	{
 		// redraw region
 		if (btn->Area.uiFlags & MSYS_HAS_BACKRECT) fMapScreenBottomDirty = TRUE;
 	}
-	else if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	else if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		RequestTriggerExitFromMapscreen(MAP_EXIT_TO_LAPTOP);
 	}
@@ -329,12 +329,12 @@ static void BtnLaptopCallback(GUI_BUTTON *btn, UINT32 reason)
 
 static void BtnTacticalCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (reason & MSYS_CALLBACK_POINTER_DWN)
 	{
 		// redraw region
 		if (btn->Area.uiFlags & MSYS_HAS_BACKRECT) fMapScreenBottomDirty = TRUE;
 	}
-	else if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	else if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		RequestTriggerExitFromMapscreen(MAP_EXIT_TO_TACTICAL);
 	}
@@ -343,12 +343,12 @@ static void BtnTacticalCallback(GUI_BUTTON *btn, UINT32 reason)
 
 static void BtnOptionsFromMapScreenCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (reason & MSYS_CALLBACK_POINTER_DWN)
 	{
 		// redraw region
 		if (btn->uiFlags & MSYS_HAS_BACKRECT) fMapScreenBottomDirty = TRUE;
 	}
-	else if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	else if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		fMapScreenBottomDirty = TRUE;
 		RequestTriggerExitFromMapscreen(MAP_EXIT_TO_OPTIONS);
@@ -374,7 +374,7 @@ static void DrawNameOfLoadedSector()
 
 static void CompressModeClickCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
-	if( iReason & ( MSYS_CALLBACK_REASON_RBUTTON_UP | MSYS_CALLBACK_REASON_LBUTTON_UP ) )
+	if( iReason & ( MSYS_CALLBACK_REASON_RBUTTON_UP | MSYS_CALLBACK_POINTER_UP ) )
 	{
 		if (CommonTimeCompressionChecks()) return;
 
@@ -385,13 +385,13 @@ static void CompressModeClickCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 
 static void BtnTimeCompressMoreMapScreenCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (reason & MSYS_CALLBACK_POINTER_DWN)
 	{
 		if (CommonTimeCompressionChecks()) return;
 		// redraw region
 		if (btn->uiFlags & MSYS_HAS_BACKRECT) fMapScreenBottomDirty = TRUE;
 	}
-	else if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	else if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		fMapScreenBottomDirty = TRUE;
 		RequestIncreaseInTimeCompression();
@@ -405,13 +405,13 @@ static void BtnTimeCompressMoreMapScreenCallback(GUI_BUTTON *btn, UINT32 reason)
 
 static void BtnTimeCompressLessMapScreenCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (reason & MSYS_CALLBACK_POINTER_DWN)
 	{
 		if (CommonTimeCompressionChecks()) return;
 		// redraw region
 		if (btn->uiFlags & MSYS_HAS_BACKRECT) fMapScreenBottomDirty = TRUE;
 	}
-	else if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	else if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		fMapScreenBottomDirty = TRUE;
 		RequestDecreaseInTimeCompression();
@@ -427,13 +427,13 @@ static void BtnMessageDownMapScreenCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	static UINT32 uiLastRepeatScrollTime = 0;
 
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (reason & MSYS_CALLBACK_POINTER_DWN)
 	{
 		// redraw region
 		if (btn->uiFlags & MSYS_HAS_BACKRECT) fMapScreenBottomDirty = TRUE;
 		uiLastRepeatScrollTime = 0;
 	}
-	else if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	else if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// redraw region
 		if (btn ->uiFlags & MSYS_HAS_BACKRECT) fMapScreenBottomDirty = TRUE;
@@ -474,13 +474,13 @@ static void BtnMessageUpMapScreenCallback(GUI_BUTTON *btn, UINT32 reason)
 {
 	static UINT32 uiLastRepeatScrollTime = 0;
 
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (reason & MSYS_CALLBACK_POINTER_DWN)
 	{
 		// redraw region
 		if (btn->Area.uiFlags & MSYS_HAS_BACKRECT) fMapScreenBottomDirty = TRUE;
 		uiLastRepeatScrollTime = 0;
 	}
-	else if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	else if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// redraw region
 		if (btn->uiFlags & MSYS_HAS_BACKRECT) fMapScreenBottomDirty = TRUE;
@@ -677,7 +677,7 @@ static void MapScreenMessageScrollBarCallBack(MOUSE_REGION* pRegion, UINT32 iRea
 	UINT8 ubDesiredMessageIndex;
 	UINT8 ubNumMessages;
 
-	if ( iReason & ( MSYS_CALLBACK_REASON_LBUTTON_DWN | MSYS_CALLBACK_REASON_LBUTTON_REPEAT ) )
+	if ( iReason & ( MSYS_CALLBACK_POINTER_DWN | MSYS_CALLBACK_REASON_LBUTTON_REPEAT ) )
 	{
 		// how many messages are there?
 		ubNumMessages = GetRangeOfMapScreenMessages();
@@ -971,7 +971,7 @@ void CreateDestroyMouseRegionMasksForTimeCompressionButtons()
 
 static void CompressMaskClickCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
-	if( iReason & MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if( iReason & MSYS_CALLBACK_POINTER_UP )
 	{
 		TellPlayerWhyHeCantCompressTime( );
 	}

@@ -739,7 +739,7 @@ static void SelWinClkCallback(GUI_BUTTON* button, UINT32 reason)
 	iClickX = button->MouseX();
 	iClickY = button->MouseY() + iTopWinCutOff - (INT16)g_sel_win_box.y;
 
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (reason & MSYS_CALLBACK_POINTER_DWN)
 	{
 		button->uiFlags |= BUTTON_CLICKED_ON;
 		iStartClickX = iClickX;
@@ -777,7 +777,7 @@ static void SelWinClkCallback(GUI_BUTTON* button, UINT32 reason)
 	{
 		button->uiFlags &= (~BUTTON_CLICKED_ON);
 	}
-	else if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
+	else if (reason & MSYS_CALLBACK_POINTER_UP )
 	{
 		button->uiFlags &= (~BUTTON_CLICKED_ON);
 
@@ -1057,7 +1057,7 @@ void RestoreSelectionList( void )
 //	Button callback function for the selection window's OK button
 static void OkClkCallback(GUI_BUTTON* button, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		fAllDone = TRUE;
 	}
@@ -1071,7 +1071,7 @@ static void OkClkCallback(GUI_BUTTON* button, UINT32 reason)
 //
 static void CnclClkCallback(GUI_BUTTON* button, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		fAllDone = TRUE;
 		RestoreSelectionList();
@@ -1082,7 +1082,7 @@ static void CnclClkCallback(GUI_BUTTON* button, UINT32 reason)
 //	Button callback function for scrolling the selection window up
 static void UpClkCallback(GUI_BUTTON* button, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP) ScrollSelWinUp();
+	if (reason & MSYS_CALLBACK_POINTER_UP) ScrollSelWinUp();
 }
 
 
@@ -1116,7 +1116,7 @@ void ScrollSelWinDown(void)
 //	Button callback function to scroll the selection window down.
 static void DwnClkCallback(GUI_BUTTON* button, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP) ScrollSelWinDown();
+	if (reason & MSYS_CALLBACK_POINTER_UP) ScrollSelWinDown();
 }
 
 

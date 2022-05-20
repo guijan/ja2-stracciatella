@@ -36,6 +36,7 @@ UINT16  gusMouseXPos;       // X position of the mouse on screen
 UINT16  gusMouseYPos;       // y position of the mouse on screen
 
 BOOLEAN gfIsUsingTouch;
+BOOLEAN gfIsMainFingerDown;
 SDL_FingerID gMainFingerId; // This is the last finger id that was used for touch
 
 // The queue structures are used to track input events using queued events
@@ -253,6 +254,7 @@ void MouseWheelScroll(const SDL_MouseWheelEvent* WheelEv)
 void FingerMove(const SDL_TouchFingerEvent* event) {
 	if (event->fingerId != gMainFingerId) return;
 	gfIsUsingTouch = true;
+	gfIsMainFingerDown = true;
 
 	SetSafeMousePosition(event->x * SCREEN_WIDTH, event->y * SCREEN_HEIGHT);
 
@@ -262,6 +264,7 @@ void FingerMove(const SDL_TouchFingerEvent* event) {
 void FingerDown(const SDL_TouchFingerEvent* event) {
 	gMainFingerId = event->fingerId;
 	gfIsUsingTouch = true;
+	gfIsMainFingerDown = true;
 
 	SetSafeMousePosition(event->x * SCREEN_WIDTH, event->y * SCREEN_HEIGHT);
 
@@ -271,6 +274,7 @@ void FingerDown(const SDL_TouchFingerEvent* event) {
 void FingerUp(const SDL_TouchFingerEvent* event) {
 	if (event->fingerId != gMainFingerId) return;
 	gfIsUsingTouch = true;
+	gfIsMainFingerDown = false;
 
 	SetSafeMousePosition(event->x * SCREEN_WIDTH, event->y * SCREEN_HEIGHT);
 

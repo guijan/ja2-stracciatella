@@ -2006,7 +2006,7 @@ static void ReloadItemDesc(void)
 
 static void ItemDescAmmoCallback(GUI_BUTTON*  const btn, UINT32 const reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		if (gpItemPointer) return;
 		if (!EmptyWeaponMagazine(gpItemDescObject, &gItemPointer)) return;
@@ -2111,7 +2111,7 @@ static void ItemDescAttachmentsCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 
 	uiItemPos = MSYS_GetRegionUserData( pRegion, 0 );
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// if the item being described belongs to a shopkeeper, ignore attempts to pick it up / replace it
 		if (guiCurrentScreen == SHOPKEEPER_SCREEN && pShopKeeperItemDescObject)
@@ -4178,11 +4178,11 @@ static void ItemDescCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	static BOOLEAN fRightDown = FALSE, fLeftDown = FALSE;
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (iReason & MSYS_CALLBACK_POINTER_DWN)
 	{
 		fLeftDown = TRUE;
 	}
-	else if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	else if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		if ( fLeftDown )
 		{
@@ -4220,7 +4220,7 @@ static void RemoveMoney(void);
 
 static void ItemDescDoneButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		if (gpItemDescObject->usItem == MONEY) RemoveMoney();
 		DeleteItemDescriptionBox();
@@ -4245,7 +4245,7 @@ static void ItemPopupRegionCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 		return;
 	}
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (iReason & MSYS_CALLBACK_POINTER_DWN)
 	{
 
 		//If one in our hand, place it
@@ -4354,7 +4354,7 @@ static void ItemPopupRegionCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 
 static void ItemPopupFullRegionCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		if ( InItemStackPopup( ) )
 		{
@@ -4923,7 +4923,7 @@ void RemoveItemPickupMenu( )
 
 static void ItemPickupScrollUp(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		SetupPickupPage( (UINT8)( gItemPickupMenu.bScrollPage - 1 ) );
 	}
@@ -4932,7 +4932,7 @@ static void ItemPickupScrollUp(GUI_BUTTON* btn, UINT32 reason)
 
 static void ItemPickupScrollDown(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		SetupPickupPage( (UINT8)( gItemPickupMenu.bScrollPage + 1 ) );
 	}
@@ -4943,7 +4943,7 @@ static void ItemPickupAll(GUI_BUTTON* btn, UINT32 reason)
 {
 	INT32 cnt;
 
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		gItemPickupMenu.fAllSelected = !gItemPickupMenu.fAllSelected;
 
@@ -4964,7 +4964,7 @@ static void ItemPickupAll(GUI_BUTTON* btn, UINT32 reason)
 
 static void ItemPickupOK(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// OK, pickup item....
 		gItemPickupMenu.fHandled = TRUE;
@@ -4977,7 +4977,7 @@ static void ItemPickupOK(GUI_BUTTON* btn, UINT32 reason)
 
 static void ItemPickupCancel(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// OK, pickup item....
 		gItemPickupMenu.fHandled = TRUE;
@@ -5029,7 +5029,7 @@ static void ItemPickMenuMouseMoveCallback(MOUSE_REGION* const pRegion, UINT32 co
 
 static void ItemPickMenuMouseClickCallback(MOUSE_REGION* const pRegion, UINT32 const iReason)
 {
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		INT32 const item_pos = MSYS_GetRegionUserData(pRegion, 0) + gItemPickupMenu.ubScrollAnchor;
 		if (item_pos >= gItemPickupMenu.ubTotalItems) return;
@@ -5087,7 +5087,7 @@ static void BtnMoneyButtonCallback(GUI_BUTTON* const btn, UINT32 const reason)
 		btn->uiFlags |= BUTTON_CLICKED_ON;
 	}
 
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		UINT32      amount   = 0;
 		UINT8 const ubButton = btn->GetUserData();

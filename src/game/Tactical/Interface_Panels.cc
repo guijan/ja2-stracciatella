@@ -1438,7 +1438,7 @@ static void SMInvMoveCamoCallback(MOUSE_REGION* const pRegion, const UINT32 iRea
 
 static void SMInvClickCamoCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (iReason & MSYS_CALLBACK_POINTER_DWN)
 	{
 		// Apply camo (if we have something in cursor...)
 		// If we do not have an item in hand, start moving it
@@ -1610,7 +1610,7 @@ static void SMInvClickCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 	}
 
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_DWN )
+	if (iReason & MSYS_CALLBACK_POINTER_DWN )
 	{
 		// If we do not have an item in hand, start moving it
 		if ( gpItemPointer == NULL )
@@ -1980,7 +1980,7 @@ static void SelectedMercButtonCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 	//if we are in the shop keeper interface
 	if (guiCurrentScreen == SHOPKEEPER_SCREEN) return;
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// ATE: Don't if this guy can't....
 		if ( !gfSMDisableForItems )
@@ -2035,7 +2035,7 @@ static void SelectedMercEnemyIndicatorCallback(MOUSE_REGION* pRegion, UINT32 iRe
 	//if we are in the shop keeper interface
 	if (guiCurrentScreen == SHOPKEEPER_SCREEN) return;
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// ATE: Don't if this guy can't....
 		if ( !gfSMDisableForItems )
@@ -2061,7 +2061,7 @@ static void SelectedMercEnemyIndicatorCallback(MOUSE_REGION* pRegion, UINT32 iRe
 
 static void BtnStanceUpCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		INT8 bNewStance = gAnimControl[gpSMCurrentMerc->usAnimState].ubEndHeight;
 		switch (bNewStance)
@@ -2080,7 +2080,7 @@ static void BtnStanceUpCallback(GUI_BUTTON* btn, UINT32 reason)
 
 void BtnUpdownCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// Change interface level via HandleUI handler
 		UIHandleChangeLevel(NULL);
@@ -2090,7 +2090,7 @@ void BtnUpdownCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnClimbCallback(GUI_BUTTON* const btn, UINT32 const reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		SOLDIERTYPE* const s = gpSMCurrentMerc;
 		if (FindLowerLevel(s))
@@ -2111,7 +2111,7 @@ static void BtnClimbCallback(GUI_BUTTON* const btn, UINT32 const reason)
 
 static void BtnStanceDownCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		INT8 bNewStance = gAnimControl[gpSMCurrentMerc->usAnimState].ubEndHeight;
 		switch (bNewStance)
@@ -2130,7 +2130,7 @@ static void BtnStanceDownCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnStealthModeCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		gpSMCurrentMerc->bStealthMode = !gpSMCurrentMerc->bStealthMode;
 		gfUIStanceDifferent = TRUE;
@@ -2142,7 +2142,7 @@ static void BtnStealthModeCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnHandCursorCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		ToggleHandCursorMode(&guiCurrentEvent);
 	}
@@ -2151,7 +2151,7 @@ static void BtnHandCursorCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnTalkCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		ToggleTalkCursorMode(&guiCurrentEvent);
 	}
@@ -2160,7 +2160,7 @@ static void BtnTalkCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnMuteCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		gpSMCurrentMerc->uiStatusFlags ^= SOLDIER_MUTE;
 		ST::string msg = (gpSMCurrentMerc->uiStatusFlags & SOLDIER_MUTE ? TacticalStr[MUTE_ON_STR] : TacticalStr[MUTE_OFF_STR]);
@@ -2199,7 +2199,7 @@ static void SelectMerc(SOLDIERTYPE* const s)
 
 static void BtnPrevMercCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		SelectMerc(FindPrevActiveAndAliveMerc(gpSMCurrentMerc, TRUE, TRUE));
 	}
@@ -2208,7 +2208,7 @@ static void BtnPrevMercCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnNextMercCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		SelectMerc(FindNextActiveAndAliveMerc(gpSMCurrentMerc, TRUE, TRUE));
 	}
@@ -2217,7 +2217,7 @@ static void BtnNextMercCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnOptionsCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		guiPreviousOptionScreen = guiCurrentScreen;
 		LeaveTacticalScreen(OPTIONS_SCREEN);
@@ -2227,7 +2227,7 @@ static void BtnOptionsCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnSMDoneCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		gfBeginEndTurn = TRUE;
 	}
@@ -2236,7 +2236,7 @@ static void BtnSMDoneCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnMapScreenCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		// Enter mapscreen...
 		//gfEnteringMapScreen = TRUE;
@@ -2247,7 +2247,7 @@ static void BtnMapScreenCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnBurstModeCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		ChangeWeaponMode(gpSMCurrentMerc);
 	}
@@ -2256,7 +2256,7 @@ static void BtnBurstModeCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnLookCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		ToggleLookCursorMode();
 	}
@@ -2589,7 +2589,7 @@ void RemoveTEAMPanelButtons(void)
 
 static void BtnEndTurnCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		UIHandleEndTurn(NULL);
 	}
@@ -2598,7 +2598,7 @@ static void BtnEndTurnCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void BtnRostermodeCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		if (guiCurrentScreen == GAME_SCREEN) GoToMapScreenFromTactical();
 	}
@@ -2608,7 +2608,7 @@ static void BtnRostermodeCallback(GUI_BUTTON* btn, UINT32 reason)
 // callback to handle squad switching callback
 static void BtnSquadCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (reason & MSYS_CALLBACK_POINTER_UP)
 	{
 		ToggleRadarScreenRender();
 	}
@@ -2687,7 +2687,7 @@ static void EnemyIndicatorClickCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 	SOLDIERTYPE* const s = pRegion->GetUserPtr<TeamPanelSlot>()->merc;
 	if (!s || !s->bActive) return;
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (iReason & MSYS_CALLBACK_POINTER_DWN)
 	{
 		if (!(s->uiStatusFlags & (SOLDIER_DRIVER | SOLDIER_PASSENGER)))
 		{
@@ -2712,11 +2712,11 @@ static void MercFacePanelCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 	// If our flags are set to do this, gofoit!
 	if (fInMapMode) // XXX necessary?
 	{
-		if (iReason & MSYS_CALLBACK_REASON_LBUTTON_DWN) SetInfoChar(s);
+		if (iReason & MSYS_CALLBACK_POINTER_DWN) SetInfoChar(s);
 		return;
 	}
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_DWN)
+	if (iReason & MSYS_CALLBACK_POINTER_DWN)
 	{
 		if (!gfInItemPickupMenu && gpItemPointer == NULL)
 		{
@@ -3081,7 +3081,7 @@ static void TMClickFirstHandInvCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 	SOLDIERTYPE* const s = pRegion->GetUserPtr<TeamPanelSlot>()->merc;
 	if (!s) return;
 
-	if (iReason == MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if (iReason == MSYS_CALLBACK_POINTER_UP )
 	{
 		// Change to use cursor mode...
 		guiPendingOverrideEvent = A_ON_TERRAIN;
@@ -3105,7 +3105,7 @@ static void TMClickSecondHandInvCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 	SOLDIERTYPE* const s = pRegion->GetUserPtr<TeamPanelSlot>()->merc;
 	if (!s) return;
 
-	if (iReason == MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if (iReason == MSYS_CALLBACK_POINTER_UP )
 	{
 		if (s->uiStatusFlags & (SOLDIER_PASSENGER | SOLDIER_DRIVER))
 		{
@@ -3365,7 +3365,7 @@ void KeyRingItemPanelButtonCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 	//if we are in the shop keeper interface
 	if (guiCurrentScreen == SHOPKEEPER_SCREEN) return;
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_UP)
+	if (iReason & MSYS_CALLBACK_POINTER_UP)
 	{
 		if( guiCurrentScreen == MAP_SCREEN )
 		{
@@ -3391,7 +3391,7 @@ void KeyRingSlotInvClickCallback( MOUSE_REGION * pRegion, UINT32 iReason )
 
 	uiKeyRing = MSYS_GetRegionUserData( pRegion, 0 );
 
-	if (iReason & MSYS_CALLBACK_REASON_LBUTTON_DWN )
+	if (iReason & MSYS_CALLBACK_POINTER_DWN )
 	{
 		//if we are in the shop keeper interface
 		if (guiCurrentScreen == SHOPKEEPER_SCREEN)
@@ -3663,7 +3663,7 @@ static void ConfirmationToDepositMoneyToPlayersAccount(MessageBoxReturnValue);
 
 static void SMInvMoneyButtonCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
-	if (iReason == MSYS_CALLBACK_REASON_LBUTTON_DWN )
+	if (iReason == MSYS_CALLBACK_POINTER_DWN )
 	{
 		//If the current merc is to far away, dont allow anything to be done
 		if( gfSMDisableForItems )

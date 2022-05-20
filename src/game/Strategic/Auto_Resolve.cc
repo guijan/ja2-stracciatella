@@ -1879,7 +1879,7 @@ static void DepressAutoButton(UINT btn)
 
 static void PauseButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if( reason & MSYS_CALLBACK_POINTER_UP )
 	{
 		DepressAutoButton(PAUSE_BUTTON);
 	}
@@ -1888,7 +1888,7 @@ static void PauseButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void PlayButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if( reason & MSYS_CALLBACK_POINTER_UP )
 	{
 		DepressAutoButton(PLAY_BUTTON);
 		gpAR->uiTimeSlice = 1000 * gpAR->ubTimeModifierPercentage / 100;
@@ -1898,7 +1898,7 @@ static void PlayButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void FastButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if( reason & MSYS_CALLBACK_POINTER_UP )
 	{
 		DepressAutoButton(FAST_BUTTON);
 		gpAR->uiTimeSlice = 4000;
@@ -1908,7 +1908,7 @@ static void FastButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void FinishButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if( reason & MSYS_CALLBACK_POINTER_UP )
 	{
 		DepressAutoButton(FINISH_BUTTON);
 		gpAR->uiTimeSlice = 0xffffffff;
@@ -1920,7 +1920,7 @@ static void FinishButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void RetreatButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if( reason & MSYS_CALLBACK_POINTER_UP )
 	{
 		FOR_EACH_AR_MERC(i)
 		{
@@ -1997,7 +1997,7 @@ static void SetupDoneInterface(void);
 
 static void BandageButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if( reason & MSYS_CALLBACK_POINTER_UP )
 	{
 		AutoBandageMercs();
 		SetupDoneInterface();
@@ -2007,7 +2007,7 @@ static void BandageButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void DoneButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if( reason & MSYS_CALLBACK_POINTER_UP )
 	{
 		gpAR->fExitAutoResolve = TRUE;
 	}
@@ -2053,7 +2053,7 @@ static void MercCellMouseMoveCallback(MOUSE_REGION* reg, UINT32 reason)
 
 static void MercCellMouseClickCallback(MOUSE_REGION* reg, UINT32 reason)
 {
-	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if( reason & MSYS_CALLBACK_POINTER_UP )
 	{
 		if( gpAR->fPendingSurrender )
 		{ //Can't setup retreats when pending surrender.
@@ -3645,7 +3645,7 @@ static void HideSurrenderInterface(void)
 
 static void AcceptSurrenderCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if( reason & MSYS_CALLBACK_POINTER_UP )
 	{
 		BeginCaptureSquence( );
 
@@ -3658,7 +3658,7 @@ static void AcceptSurrenderCallback(GUI_BUTTON* btn, UINT32 reason)
 
 static void RejectSurrenderCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if( reason & MSYS_CALLBACK_REASON_LBUTTON_UP )
+	if( reason & MSYS_CALLBACK_POINTER_UP )
 	{
 		gpAR->fPlayerRejectedSurrenderOffer = TRUE;
 		HideSurrenderInterface();

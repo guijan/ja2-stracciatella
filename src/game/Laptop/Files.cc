@@ -485,7 +485,7 @@ static void RemoveFilesMouseRegions()
 
 static void FilesBtnCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_POINTER_UP)
+	if (iReason & MSYS_CALLBACK_REASON_POINTER_UP)
 	{
 		FilesUnit* pFilesList = pFilesListHead;
 		INT32 iFileId = MSYS_GetRegionUserData(pRegion, 0);
@@ -817,7 +817,7 @@ static void DeleteButtonsForFilesPage(void)
 
 static void BtnPreviousFilePageCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_POINTER_UP)
+	if (reason & MSYS_CALLBACK_REASON_POINTER_UP)
 	{
 		LoadPreviousPage();
 	}
@@ -826,7 +826,7 @@ static void BtnPreviousFilePageCallback(GUI_BUTTON *btn, UINT32 reason)
 
 static void BtnNextFilePageCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_POINTER_UP)
+	if (reason & MSYS_CALLBACK_REASON_POINTER_UP)
 	{
 		LoadNextPage();
 	}

@@ -741,7 +741,7 @@ static void ScrollRegionCallback(MOUSE_REGION* const, UINT32 const reason)
 
 static void BtnFinanceDisplayPrevPageCallBack(GUI_BUTTON* const, UINT32 const reason)
 {
-	if (reason & MSYS_CALLBACK_POINTER_UP)
+	if (reason & MSYS_CALLBACK_REASON_POINTER_UP)
 	{
 		LoadPreviousPage();
 	}
@@ -750,7 +750,7 @@ static void BtnFinanceDisplayPrevPageCallBack(GUI_BUTTON* const, UINT32 const re
 
 static void BtnFinanceDisplayNextPageCallBack(GUI_BUTTON* const, UINT32 const reason)
 {
-	if (reason & MSYS_CALLBACK_POINTER_UP)
+	if (reason & MSYS_CALLBACK_REASON_POINTER_UP)
 	{
 		LoadNextPage();
 	}
@@ -759,7 +759,7 @@ static void BtnFinanceDisplayNextPageCallBack(GUI_BUTTON* const, UINT32 const re
 
 static void BtnFinanceFirstPageCallBack(GUI_BUTTON* const, UINT32 const reason)
 {
-	if (reason & MSYS_CALLBACK_POINTER_UP)
+	if (reason & MSYS_CALLBACK_REASON_POINTER_UP)
 	{
 		LoadInRecords(0);
 	}
@@ -768,7 +768,7 @@ static void BtnFinanceFirstPageCallBack(GUI_BUTTON* const, UINT32 const reason)
 
 static void BtnFinanceLastPageCallBack(GUI_BUTTON* const, UINT32 const reason)
 {
-	if (reason & MSYS_CALLBACK_POINTER_UP)
+	if (reason & MSYS_CALLBACK_REASON_POINTER_UP)
 	{
 		LoadInRecords(guiLastPageInRecordsList + 1);
 	}

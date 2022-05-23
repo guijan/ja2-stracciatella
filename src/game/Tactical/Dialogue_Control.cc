@@ -1494,12 +1494,12 @@ static void TextOverlayClickCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	static BOOLEAN fLButtonDown = FALSE;
 
-	if (iReason & MSYS_CALLBACK_POINTER_DWN )
+	if (iReason & MSYS_CALLBACK_REASON_POINTER_DWN )
 	{
 		fLButtonDown = TRUE;
 	}
 
-	if (iReason & MSYS_CALLBACK_POINTER_UP && fLButtonDown )
+	if (iReason & MSYS_CALLBACK_REASON_POINTER_UP && fLButtonDown )
 	{
 		if(  gpCurrentTalkingFace != NULL )
 		{
@@ -1517,12 +1517,12 @@ static void FaceOverlayClickCallback(MOUSE_REGION* pRegion, UINT32 iReason)
 {
 	static BOOLEAN fLButtonDown = FALSE;
 
-	if (iReason & MSYS_CALLBACK_POINTER_DWN )
+	if (iReason & MSYS_CALLBACK_REASON_POINTER_DWN )
 	{
 		fLButtonDown = TRUE;
 	}
 
-	if (iReason & MSYS_CALLBACK_POINTER_UP && fLButtonDown )
+	if (iReason & MSYS_CALLBACK_REASON_POINTER_UP && fLButtonDown )
 	{
 		if(  gpCurrentTalkingFace != NULL )
 		{

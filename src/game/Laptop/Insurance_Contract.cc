@@ -361,7 +361,7 @@ void RenderInsuranceContract()
 
 static void BtnInsContractPrevButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_POINTER_UP)
+	if (reason & MSYS_CALLBACK_REASON_POINTER_UP)
 	{
 		if (gusCurrentInsuranceMercIndex > 2) gusCurrentInsuranceMercIndex -= 3;
 		// signal that we want to change the number of forms on the page
@@ -372,7 +372,7 @@ static void BtnInsContractPrevButtonCallback(GUI_BUTTON *btn, UINT32 reason)
 
 static void BtnInsContractNextButtonCallBack(GUI_BUTTON *btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_POINTER_UP)
+	if (reason & MSYS_CALLBACK_REASON_POINTER_UP)
 	{
 		gusCurrentInsuranceMercIndex += 3;
 		// signal that we want to change the number of forms on the page
@@ -587,7 +587,7 @@ static void HandleAcceptButton(SOLDIERTYPE* s);
 
 static void BtnInsuranceAcceptClearFormButtonCallback(GUI_BUTTON* btn, UINT32 reason)
 {
-	if (reason & MSYS_CALLBACK_POINTER_UP)
+	if (reason & MSYS_CALLBACK_REASON_POINTER_UP)
 	{
 		UINT         const idx = btn->GetUserData();
 		SOLDIERTYPE* const s   = insurance_info[idx].soldier;
@@ -602,7 +602,7 @@ static void BtnInsuranceAcceptClearFormButtonCallback(GUI_BUTTON* btn, UINT32 re
 
 static void SelectInsuranceContractRegionCallBack(MOUSE_REGION* pRegion, UINT32 iReason)
 {
-	if (iReason & MSYS_CALLBACK_POINTER_UP)
+	if (iReason & MSYS_CALLBACK_REASON_POINTER_UP)
 	{
 		UINT32 uiInsuranceLink = MSYS_GetRegionUserData( pRegion, 0 );
 

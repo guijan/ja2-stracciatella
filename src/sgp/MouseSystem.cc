@@ -39,6 +39,7 @@
 //
 //Max double click delay (in milliseconds) to be considered a double click
 #define MSYS_DOUBLECLICK_DELAY		400
+#define MSYS_DOUBLETAP_DELAY		600
 //
 //Records and stores the last place the user clicked.  These values are compared to the current
 //click to determine if a double click event has been detected.
@@ -66,9 +67,9 @@ static const INT16 gsFastHelpDelay = 600; // In timer ticks
 const UINT32 longTapMinLength = 1000;
 
 // State for tapping
-static MOUSE_REGION* lastFingerDownRegion = NULL;
-static MOUSE_REGION* lastFingerUpRegion   = NULL;
-UINT32 lastFingerDownTime;
+static MOUSE_REGION* gpRegionLastFingerDown = NULL;
+static MOUSE_REGION* gpRegionLastFingerUp   = NULL;
+UINT32 guiRegionLastFingerDownTime;
 
 INT16 lastFingerDownX;
 INT16 lastFingerDownY;
@@ -141,14 +142,19 @@ void MouseSystemHook(UINT16 type, UINT32 button, UINT16 x, UINT16 y)
 			switch (button) {
 				case MOUSE_BUTTON_LEFT:
 					action |= MSYS_DO_LBUTTON_DWN;
+					break;
 				case MOUSE_BUTTON_RIGHT:
 					action |= MSYS_DO_RBUTTON_DWN;
+					break;
 				case MOUSE_BUTTON_MIDDLE:
 					action |= MSYS_DO_MBUTTON_DWN;
+					break;
 				case MOUSE_BUTTON_X1:
 					action |= MSYS_DO_X1BUTTON_DWN;
+					break;
 				case MOUSE_BUTTON_X2:
 					action |= MSYS_DO_X2BUTTON_DWN;
+					break;
 			}
 			UpdateButtons();
 			break;
@@ -166,14 +172,19 @@ void MouseSystemHook(UINT16 type, UINT32 button, UINT16 x, UINT16 y)
 					*        regardless of regions, buttons, etc. */
 					ReleaseAnchorMode();
 					action |= MSYS_DO_LBUTTON_UP;
+					break;
 				case MOUSE_BUTTON_RIGHT:
 					action |= MSYS_DO_RBUTTON_UP;
+					break;
 				case MOUSE_BUTTON_MIDDLE:
 					action |= MSYS_DO_MBUTTON_UP;
+					break;
 				case MOUSE_BUTTON_X1:
 					action |= MSYS_DO_X1BUTTON_UP;
+					break;
 				case MOUSE_BUTTON_X2:
 					action |= MSYS_DO_X2BUTTON_UP;
+					break;
 			}
 			UpdateButtons();
 			break;
@@ -184,14 +195,19 @@ void MouseSystemHook(UINT16 type, UINT32 button, UINT16 x, UINT16 y)
 			switch (button) {
 				case MOUSE_BUTTON_LEFT:
 					action |= MSYS_DO_LBUTTON_REPEAT;
+					break;
 				case MOUSE_BUTTON_RIGHT:
 					action |= MSYS_DO_RBUTTON_REPEAT;
+					break;
 				case MOUSE_BUTTON_MIDDLE:
 					action |= MSYS_DO_MBUTTON_REPEAT;
+					break;
 				case MOUSE_BUTTON_X1:
 					action |= MSYS_DO_X1BUTTON_REPEAT;
+					break;
 				case MOUSE_BUTTON_X2:
 					action |= MSYS_DO_X2BUTTON_REPEAT;
+					break;
 			}
 			break;
 
@@ -209,6 +225,9 @@ void MouseSystemHook(UINT16 type, UINT32 button, UINT16 x, UINT16 y)
 		case TOUCH_FINGER_DOWN:
 			action |= MSYS_DO_TFINGER_DOWN;
 			break;
+		case TOUCH_FINGER_REPEAT:
+			action |= MSYS_DO_TFINGER_REPEAT;
+			break;
 
 		case MOUSE_POS:
 		case TOUCH_FINGER_MOVE:
@@ -220,7 +239,7 @@ void MouseSystemHook(UINT16 type, UINT32 button, UINT16 x, UINT16 y)
 			break;
 
 		default:
-			STLOGW("Unknown event type {} in mouse system event queue", type);
+			SLOGW("Unknown event type {} in mouse system event queue", type);
 			return;
 	}
 
@@ -358,7 +377,7 @@ static void MSYS_UpdateMouseRegion(void)
 
 			/* Force a callbacks to happen on previous region to indicate that the
 			 * mouse has left the old region */
-			if (prev->MovementCallback != NULL && prev->uiFlags & MSYS_REGION_ENABLED)
+			if (prev->MovementCallback && prev->uiFlags & MSYS_REGION_ENABLED)
 			{
 				prev->MovementCallback(prev, MSYS_CALLBACK_REASON_LOST_MOUSE);
 			}
@@ -374,7 +393,7 @@ static void MSYS_UpdateMouseRegion(void)
 
 			//Kris -- October 27, 1997
 			//Implemented gain mouse region
-			if (cur->MovementCallback != NULL)
+			if (cur->MovementCallback)
 			{
 				if (!cur->FastHelpText.empty() && !(cur->uiFlags & MSYS_FASTHELP_RESET))
 				{
@@ -429,7 +448,7 @@ static void MSYS_UpdateMouseRegion(void)
 			cur->ButtonState = MSYS_CurrentButtons;
 
 			if (cur->uiFlags & MSYS_REGION_ENABLED &&
-					cur->MovementCallback != NULL &&
+					cur->MovementCallback &&
 					MSYS_Action & MSYS_DO_MOVE)
 			{
 				cur->MovementCallback(cur, MSYS_CALLBACK_REASON_MOVE);
@@ -437,7 +456,7 @@ static void MSYS_UpdateMouseRegion(void)
 
 			MSYS_Action &= ~MSYS_DO_MOVE;
 
-			if (cur->ButtonCallback != NULL && MSYS_Action & (MSYS_DO_BUTTONS | MSYS_DO_TFINGER_UP | MSYS_DO_TFINGER_DOWN))
+			if (cur->ButtonCallback && MSYS_Action & (MSYS_DO_BUTTONS | MSYS_DO_TFINGER_UP | MSYS_DO_TFINGER_DOWN | MSYS_DO_TFINGER_REPEAT))
 			{
 				if (cur->uiFlags & MSYS_REGION_ENABLED)
 				{
@@ -490,16 +509,15 @@ static void MSYS_UpdateMouseRegion(void)
 						g_clicked_region = 0;
 					}
 
-					// Touch emulates left click
-					if (MSYS_Action & MSYS_DO_TFINGER_UP)
-					{
-						ButtonReason |= MSYS_CALLBACK_REASON_TFINGER_UP;
-						g_clicked_region = 0;
-					}
 					if (MSYS_Action & MSYS_DO_TFINGER_DOWN)
 					{
 						ButtonReason |= MSYS_CALLBACK_REASON_TFINGER_DWN;
 						g_clicked_region = cur;
+					}
+					if (MSYS_Action & MSYS_DO_TFINGER_UP)
+					{
+						ButtonReason |= MSYS_CALLBACK_REASON_TFINGER_UP;
+						g_clicked_region = 0;
 					}
 
 					// ATE: Added repeat resons....
@@ -528,6 +546,11 @@ static void MSYS_UpdateMouseRegion(void)
 						ButtonReason |= MSYS_CALLBACK_REASON_X2BUTTON_REPEAT;
 					}
 
+					if (MSYS_Action & MSYS_DO_TFINGER_REPEAT)
+					{
+						ButtonReason |= MSYS_CALLBACK_REASON_TFINGER_REPEAT;
+					}
+
 					if (MSYS_Action & MSYS_DO_WHEEL_UP)   ButtonReason |= MSYS_CALLBACK_REASON_WHEEL_UP;
 					if (MSYS_Action & MSYS_DO_WHEEL_DOWN) ButtonReason |= MSYS_CALLBACK_REASON_WHEEL_DOWN;
 
@@ -550,26 +573,47 @@ static void MSYS_UpdateMouseRegion(void)
 						}
 
 
-						// This is where we detect tap gestures
-						if (ButtonReason & MSYS_CALLBACK_REASON_TFINGER_DWN) {
+						// This is where we detect double tap gestures
+						if (ButtonReason & MSYS_CALLBACK_REASON_TFINGER_DWN)
+						{
 							UINT32 uiCurrTime = GetClock();
-
-							lastFingerDownX = MSYS_CurrentMX;
-							lastFingerDownY = MSYS_CurrentMX;
-							lastFingerDownTime = uiCurrTime;
-							lastFingerDownRegion = cur;
+							if (gpRegionLastFingerDown == cur &&
+									gpRegionLastFingerUp   == cur &&
+									uiCurrTime <= guiRegionLastFingerDownTime + MSYS_DOUBLETAP_DELAY)
+							{
+								/* Sequential left tap on same button within the maximum time
+								 * allowed for a double click.  Double click check succeeded,
+								 * set flag and reset double click globals. */
+								ButtonReason |= MSYS_CALLBACK_REASON_TFINGER_DOUBLETAP;
+								gpRegionLastFingerDown = NULL;
+								gpRegionLastFingerUp   = NULL;
+								guiRegionLastFingerDownTime = 0;
+							}
+							else
+							{
+								/* First tap, record time and region pointer (to check if 2nd
+								 * tap detected later) */
+								gpRegionLastFingerDown = cur;
+								guiRegionLastFingerDownTime = uiCurrTime;
+							}
 						}
-						if (ButtonReason & MSYS_CALLBACK_REASON_TFINGER_UP) {
+						else if (ButtonReason & MSYS_CALLBACK_REASON_TFINGER_UP)
+						{
 							UINT32 uiCurrTime = GetClock();
-
-							if (lastFingerDownRegion == cur) {
-								if (uiCurrTime - lastFingerDownTime > longTapMinLength) {
-									ButtonReason |= MSYS_CALLBACK_REASON_LONG_TAP;
-									ButtonReason |= MSYS_CALLBACK_REASON_RBUTTON_UP;
-								} else {
-									ButtonReason |= MSYS_CALLBACK_REASON_TAP;
-									ButtonReason |= MSYS_CALLBACK_REASON_LBUTTON_UP;
-								}
+							if (gpRegionLastFingerDown == cur &&
+									uiCurrTime <= guiRegionLastFingerDownTime + MSYS_DOUBLETAP_DELAY)
+							{
+								/* Double tap is down, then up, then down.  We
+								 * have just detected the up here (step 2). */
+								gpRegionLastFingerUp = cur;
+							}
+							else
+							{
+								/* User released touch outside of current button, so kill any
+								 * chance of a double tap happening. */
+								gpRegionLastFingerDown = NULL;
+								gpRegionLastFingerUp   = NULL;
+								guiRegionLastFingerDownTime = 0;
 							}
 						}
 
@@ -622,7 +666,7 @@ static void MSYS_UpdateMouseRegion(void)
 				}
 			}
 
-			MSYS_Action &= ~(MSYS_DO_BUTTONS | MSYS_DO_TFINGER_UP | MSYS_DO_TFINGER_DOWN);
+			MSYS_Action &= ~(MSYS_DO_BUTTONS | MSYS_DO_TFINGER_UP | MSYS_DO_TFINGER_DOWN | MSYS_DO_TFINGER_REPEAT);
 		}
 		else if (cur->uiFlags & MSYS_REGION_ENABLED)
 		{
@@ -642,7 +686,7 @@ static void MSYS_UpdateMouseRegion(void)
 			cur->RelativeXPos = MSYS_CurrentMX - cur->RegionTopLeftX;
 			cur->RelativeYPos = MSYS_CurrentMY - cur->RegionTopLeftY;
 
-			if (cur->MovementCallback != NULL && MSYS_Action & MSYS_DO_MOVE)
+			if (cur->MovementCallback && MSYS_Action & MSYS_DO_MOVE)
 			{
 				cur->MovementCallback(cur, MSYS_CALLBACK_REASON_MOVE);
 			}
@@ -754,7 +798,6 @@ INT32 MSYS_GetRegionUserData(MOUSE_REGION const* const r, UINT32 const index)
 	if (lengthof(r->user.data) <= index) throw std::logic_error("User data index is out of range");
 	return r->user.data[index];
 }
-
 
 // This function will force a re-evaluation of mouse regions
 // Usually used to force change of mouse cursor if panels switch, etc

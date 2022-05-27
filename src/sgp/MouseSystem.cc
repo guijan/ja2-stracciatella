@@ -970,7 +970,7 @@ void RenderFastHelp()
 	MOUSE_REGION* const r = MSYS_CurrRegion;
 	if (!r || r->FastHelpText.empty()) return;
 
-	if (r->uiFlags & (MSYS_ALLOW_DISABLED_FASTHELP | MSYS_REGION_ENABLED))
+	if (r->uiFlags & (MSYS_ALLOW_DISABLED_FASTHELP | MSYS_REGION_ENABLED) && !gfIsUsingTouch)
 	{
 		if (r->FastHelpTimer == 0)
 		{

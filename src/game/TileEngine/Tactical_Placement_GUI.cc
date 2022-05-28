@@ -392,7 +392,7 @@ void TacticalPlacementHandle()
 
 	RenderTacticalPlacementGUI();
 
-	if( gfRightButtonState )
+	if( IsMouseButtonDown(MOUSE_BUTTON_RIGHT) )
 	{
 		gbSelectedMercID = -1;
 		gubSelectedGroupID = 0;

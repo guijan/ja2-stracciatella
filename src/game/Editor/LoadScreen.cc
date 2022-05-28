@@ -608,7 +608,7 @@ static void DrawFileDialog(void)
 			iFileDlgButtons[i]->Draw();
 		}
 	}
-	RenderButtonsFastHelp();
+	RenderFastHelp();
 
 	SetFontAttributes(FONT10ARIAL, FONT_LTKHAKI, FONT_DKKHAKI);
 	MPrint(185, 80, "Directory");

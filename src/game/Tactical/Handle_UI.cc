@@ -5,6 +5,7 @@
 #include "Local.h"
 #include "Merc_Hiring.h"
 #include "Real_Time_Input.h"
+#include "Turn_Based_Input.h"
 #include "Soldier_Find.h"
 #include "Debug.h"
 #include "JAScreens.h"
@@ -72,6 +73,7 @@
 #include "Map_Information.h"
 #include "Video.h"
 #include "Screens.h"
+#include "Touch_Controls.h"
 #include "UILayout.h"
 
 #include "ContentManager.h"
@@ -2874,6 +2876,7 @@ MouseMoveState GetCursorMovementFlags()
 static INT8 DrawUIMovementPath(SOLDIERTYPE* pSoldier, UINT16 usMapPos, MoveUITarget);
 
 
+// Remember, remember to add touch stuff here
 BOOLEAN HandleUIMovementCursor(SOLDIERTYPE* const pSoldier, MouseMoveState const uiCursorFlags, UINT16 const usMapPos, MoveUITarget const uiFlags)
 {
 	static const SOLDIERTYPE* target = NULL;
@@ -2928,6 +2931,7 @@ BOOLEAN HandleUIMovementCursor(SOLDIERTYPE* const pSoldier, MouseMoveState const
 		{
 			// SHOW CURSOR
 			fSetCursor = TRUE;
+			TacticalTouchControls::showConfirmationDialog(usMapPos, gsInterfaceLevel);
 
 			// IF CURSOR WAS PREVIOUSLY STATIONARY, MAKE THE ADDITIONAL CHECK OF GRID POS CHANGE
 			if ((uiCursorFlags == MOUSE_MOVING_NEW_TILE && !fTargetFoundAndLookingForOne) || gfUINewStateForIntTile)

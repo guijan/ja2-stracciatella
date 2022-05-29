@@ -223,8 +223,6 @@ extern BOOLEAN gfUIForceReExamineCursorData;
 void GetKeyboardInput(UIEventKind* puiNewEvent);
 void GetPolledKeyboardInput(UIEventKind* puiNewEvent);
 
-void GetTBMouseButtonInput(UIEventKind* puiNewEvent);
-void GetTBMousePositionInput(UIEventKind* puiNewEvent);
 void HandleStanceChangeFromUIKeys( UINT8 ubAnimHeight );
 void HandleKeyInputOnEnemyTurn(void);
 
